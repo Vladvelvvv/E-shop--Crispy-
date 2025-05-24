@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Amatic SC
+- Font Author: undefined
+- Font Source: https://fonts.gstatic.com/s/amaticsc/v26/TUZ3zwprpvBS1izr_vOMscG6eb8D3WTy-A.ttf
+- Font License: undefined)

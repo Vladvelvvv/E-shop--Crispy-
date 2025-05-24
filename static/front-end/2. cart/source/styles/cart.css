@@ -1,0 +1,54 @@
+.card-wrapper{
+    color:aquamarine;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 100px;
+    padding:30px 40px;
+    border:2px solid rgb(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart-wrapper{
+    color:aquamarine;
+    width:750px;
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-radius: 100px;
+    padding:30px 40px;
+    border:2px solid rgb(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.good-wrapper{
+    color:aquamarine;
+    width:675px;
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-radius: 100px;
+    padding:30px 40px;
+    border:2px solid rgb(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart-title{
+    color:aquamarine;
+    font-size: 50px;
+    font-weight: 1000;
+}
+
+.cart .text{
+    color:aquamarine;
+    font-size: 75px;
+}
+
+.mod-li{
+     color:aquamarine;
+    background-color: rgba(0, 0, 0, 0.2);
+    width:600px;
+    border-radius: 100px;
+    border:2px solid rgb(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

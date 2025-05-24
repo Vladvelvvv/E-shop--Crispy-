@@ -1,0 +1,132 @@
+.slide .content{
+    border-radius: 20%;
+}
+
+.slide video{
+    border-radius: 20%;
+}
+
+.slide-text,
+.footer-text{
+    color:aquamarine;
+    margin: auto auto
+}
+
+@media (max-width: 755px){
+    .carousel-indicators{
+        display: none;
+    }
+}
+
+.container{
+    position: relative;
+}
+
+.container .slide-container .slide{
+    position: relative;
+    min-height: 100 vh;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.container .slide-container .slide video{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.container .slide-container .slide .content{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    color:aquamarine;
+}
+
+
+.container .slide-container .slide .content h3{
+    font-weight: bolder;
+    font-size:calc(30px + (80-30) * ((100vw - 300px) / (1600-300)));
+    animation: animate .4s linear .4s backwards;
+}
+
+.container .slide-container .slide .content p{
+    font-size:calc(13px + (25-13) * ((100vw - 300px) / (1600-300)));
+    max-width: 80rem;
+    padding: 1rem 4rem;
+    animation: animate .4s linear .6s backwards;
+}
+
+@keyframes animate{
+    0%{
+        opacity: 0;
+        transform: scale(.5) translateY(-5rem);
+    }
+}
+
+.container .slide-container .slide .content .btn{
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: aquamarine;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.8);
+    font-size: 1.4rem;
+    font-weight: 800;
+    animation: animate-rotate .4s linear 1s backwards;
+}
+
+@keyframes animate-rotate{
+    0%{
+        opacity: 0;
+        transform: rotate(360deg);
+    }
+}
+
+.container .slide-container{
+    display: none;
+}
+
+.container .slide-container.active{
+    display: block;
+}
+
+.container #next{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    background-color: aquamarine;
+    color: black;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    font-weight: 800;
+    font-size: 2rem;
+    cursor: pointer;
+    right: 2rem;
+}
+
+.container #prev{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    background-color: aquamarine;
+    color: black;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    font-weight: 800;
+    font-size: 2rem;
+    cursor: pointer;
+    left: 2rem;
+}

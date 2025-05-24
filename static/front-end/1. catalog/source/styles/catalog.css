@@ -1,0 +1,51 @@
+.card-title{
+    font-weight:bolder;
+}
+
+.card-img-top{
+    width:150px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card{
+    height: 550px;
+    background-color: rgba(21, 167, 5, 0.75);
+    text-align: center;
+    border-radius: 50px;
+    font-weight: 1000px;
+}
+
+
+.card a{
+    text-decoration: none;
+    color: black;
+}
+
+.card a:hover{
+    text-decoration: none;
+    color: black;
+    border-radius: 50px;
+    background-color: aquamarine;
+}
+
+.product-card{
+    height: 500px;
+    width: 700px;
+    background-color: rgba(21, 167, 5, 0.75);
+    text-align: center;
+    border-radius: 50px;
+    font-weight: 1000px;
+    
+}
+
+.product-card a{
+    color: black;
+    
+}
+
+.product-card a:hover{
+    background-color: aquamarine;
+    color:rgba(21, 167, 5, 0.83);
+}
+
