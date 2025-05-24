@@ -3,7 +3,8 @@ from django.shortcuts import render
 def index(request):
     
     context = {
-        'title': 'Crispy'
+        'title': 'Crispy',
+        'class': 'index',
     }
     
     return render(request, "main/index.html", context)
@@ -11,7 +12,8 @@ def index(request):
 def about(request):
     
     context = {
-        'title': 'О нас'
+        'title': 'О нас',
+        'class': 'index',
     }
     
     return render(request, "main/about.html", context)

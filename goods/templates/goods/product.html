@@ -1,0 +1,66 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "1. catalog\source\styles\catalog.css" %}">
+    <link rel="stylesheet" href="{% static "source\styles\bg-images\catalog-bg-image\catalog-bg-image.css" %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="row">
+                    <div class="product-card">
+                        <div>
+                            <img src="{% static "1. catalog/source/images/Сладости/nesquik_duo.webp" %}" class="card-img-top"
+                            alt="Шоколадка Nesquik duo">    
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Шоколадка Nesquik duo</h5>
+                            <p class="card-text">
+                                Плитка, соединяющая в себе нежный белый и молочный шоколад.
+                                Очень вкусно!
+                            </p>
+                            <p>420г</p>
+                            <p>Цена: 5.70 рублей</p>
+                            <p>В наличии: 10</p>
+                            <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                            <a href="{% url "goods:catalog" %}" class="btn btn-primary">Назад в каталог</a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 text-center mt-4">
+                        <p>Есть вопросы? Напишите нам в директ!</p>
+                    </div>
+                    <div class="col-lg-12 col-md-12 text-center">
+                        <p><a href="https://www.instagram.com/direct/t/102299521419536" target="_blank"><img
+                                    class="call-anim" style="width: 40px" src="{% static "source\files\direct.jpg" %}"
+                                    alt="Наш директ"></a></p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="row px-2">
+                    <div class="col-lg-12 sidebar my-4">
+
+                    </div>
+                    <div class="col-lg-12 sidebar my-4">
+
+                    </div>
+                    <div class="col-lg-12 sidebar my-4">
+
+                    </div>
+                    <div class="col-lg-12 sidebar my-4">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

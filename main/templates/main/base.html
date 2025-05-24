@@ -12,16 +12,16 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static "source\files\favicon\favicon-32x32.png" %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static "source/files/favicon/favicon-16x16.png" %}">
     <link rel="manifest" href="{% static "source\files\favicon\site.webmanifest" %}">
-    {% block css %}
-    {% endblock %}
     <link rel="stylesheet" href="{% static "source\bootstrap-5.2.3-dist\css\bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "source\styles\base\base.css" %}">
     <link rel="stylesheet" href="{% static "2. cart\source\styles\cart.css" %}">
     <link rel="stylesheet" href="{% static "source\styles\navbar\navbar.css" %}">
     <link rel="stylesheet" href="{% static "source\styles\footer\footer.css" %}">
+    {% block css %}
+    {% endblock %}
 </head>
 
-<body class="index">
+<body class="{{class}}">
     <div class="wrapper">
         <header class="header" id="top">
             <!-- Навигационная панель -->
@@ -41,7 +41,7 @@
                                     страница</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="..\1. catalog\0. catalog.html">Каталог</a>
+                                <a class="nav-link" href="{% url "goods:catalog" %}">Каталог</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="..\2. cart\0. cart.html">Корзина</a>
@@ -76,15 +76,15 @@
                                 height="16">
                         </button>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-item active" href="#" aria-current="true">Все товары</li>
-                            <li class="dropdown-item" href="..\1. catalog\0. catalog.html">Сладенькое</li>
-                            <li class="dropdown-item" href="..\1. catalog\0. catalog.html">Мороженко</li>
-                            <li class="dropdown-item" href="..\1. catalog\0. catalog.html">Напитки</li>
-                            <li class="dropdown-item" href="..\1. catalog\0. catalog.html">Энергетики</li>
-                            <li class="dropdown-item" href="..\1. catalog\0. catalog.html">Чипсики</li>
-                            <li class="dropdown-item" href="..\1. catalog\0. catalog.html">Лапша</li>
-                            <li class="dropdown-item" href="..\1. catalog\0. catalog.html">Токпокки</li>
-                            <li class="dropdown-item" href="..\1. catalog\0. catalog.html">Соевые закуски</li>
+                            <li> <a class="dropdown-item active" href="{% url "goods:catalog" %}" aria-current="true">Все товары </a></li>
+                            <li> <a class="dropdown-item" href="{% url "goods:catalog" %}">Сладенькое </a></li>
+                            <li> <a class="dropdown-item" href="{% url "goods:catalog" %}">Мороженко </a></li>
+                            <li> <a class="dropdown-item" href="{% url "goods:catalog" %}">Напитки </a></li>
+                            <li> <a class="dropdown-item" href="{% url "goods:catalog" %}">Энергетики </a></li>
+                            <li> <a class="dropdown-item" href="{% url "goods:catalog" %}">Чипсики </a></li>
+                            <li> <a class="dropdown-item" href="{% url "goods:catalog" %}">Лапша </a></li>
+                            <li> <a class="dropdown-item" href="{% url "goods:catalog" %}">Токпокки </a></li>
+                            <li> <a class="dropdown-item" href="{% url "goods:catalog" %}">Соевые закуски </a></li>
                         </ul>
                     </div>
                     <div>
@@ -198,7 +198,7 @@
                     <div class="col-lg-4 col-md-12 footer-text text-center">
                         <p>
                             <br>
-                            <a href="..\1. catalog\0. catalog.html">Наш каталог!</a>
+                            <a href="{% url "goods:catalog" %}">Наш каталог!</a>
                             <br>
                             <a href="{% url "main:about" %}">Найди нас в Минске!</a>
                         </p>

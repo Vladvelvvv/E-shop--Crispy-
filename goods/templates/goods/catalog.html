@@ -1,0 +1,113 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "1. catalog\source\styles\catalog.css" %}">
+    <link rel="stylesheet" href="{% static "source\styles\bg-images\catalog-bg-image\catalog-bg-image.css" %}">
+{% endblock %}
+
+{% block content %}    
+</body>
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mt-4">
+                        <div class="card">
+                            <a  href="{% url "goods:product" %}">
+                                <img src="{% static "1. catalog/source/images/Сладости/nesquik_duo.webp" %}" class="card-img-top"
+                                alt="Шоколадка Nesquik duo">
+                            </a>
+                            <a  href="{% url "goods:product" %}">
+                                <div class="card-body">
+                                    <h5 class="card-title">Шоколадка Nesquik duo</h5>
+                                    <p class="card-text">
+                                        Плитка, соединяющая в себе нежный белый и молочный шоколад.
+                                        Очень вкусно!
+                                    </p>
+                                    <p>Цена: 5.70 рублей</p>
+                                    <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4">
+                        <div class="card">
+                            <a  href="{% url "goods:product" %}">
+                                <img src="{% static "1. catalog/source/images/Сладости/pocke.webp" %}" class="card-img-top"
+                                    alt="Соломка в глазури Pocke">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">Соломка в глазури Pocke</h5>
+                                <p class="card-text">Идеально к чаю или кофе. Превосходный вкус десерта
+                                    дарит райское наслаждение!</p>
+                                <p>Цена: 3.60 рублей</p>
+                                <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4">
+                        <div class="card">
+                            <a  href="{% url "goods:product" %}">
+                                <img src="{% static "1. catalog/source/images/Сладости/sourcandy.webp" %}" class="card-img-top"
+                                    alt="Кислые конфетки SourCandy">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">Кислые конфетки SourCandy</h5>
+                                <p class="card-text">Для самых отважных! От кислоты этих леденцов даже могут
+                                    пойти
+                                    слезы!</p>
+                                    <p>Цена: 1.90 рублей</p>
+                                <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mt-4">
+                        <div class="card">
+                            <a  href="{% url "goods:product" %}">
+                                <img src="{% static "1. catalog/source/images/Сладости/mentosduo.webp" %}" class="card-img-top"
+                                    alt="Жевательные конфетки MentosDuo">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">Жевательные конфетки MentosDuo</h5>
+                                <p class="card-text">Яблочная сахарная оболочка и конфета с освежающей начинкой
+                                    внутри!</p>
+                                <p>Цена: 8.90 рублей</p>
+                                <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 text-center mt-4">
+                        <p>Есть вопросы? Напишите нам в директ!</p>
+                    </div>
+                    <div class="col-lg-12 col-md-12 text-center">
+                        <p><a href="https://www.instagram.com/direct/t/102299521419536" target="_blank"><img
+                                    class="call-anim" style="width: 40px" src="{% static "source\files\direct.jpg" %}"
+                                    alt="Наш директ"></a></p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-12">
+                <div class="row px-2">
+                    <div class="col-lg-12 sidebar my-4">
+
+                    </div>
+                    <div class="col-lg-12 sidebar my-4">
+
+                    </div>
+                    <div class="col-lg-12 sidebar my-4">
+
+                    </div>
+                    <div class="col-lg-12 sidebar my-4">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
