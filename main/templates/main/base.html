@@ -42,7 +42,7 @@
                                     страница</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url "goods:catalog" %}">Каталог</a>
+                                <a class="nav-link" href="{% url "goods:catalog" category_slug='all' %}">Каталог</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="..\2. cart\0. cart.html">Корзина</a>
@@ -62,7 +62,7 @@
                             </li>
                             <form class="d-flex search-form" role="search">
                                 <input class="form-control me-2 search-input" type="search" placeholder="Поиск по каталогу" aria-label="Search">
-                                <button class="btn search-button" type="submit"><a href="{% url "goods:catalog" %}">Найти</a></button>
+                                <button class="btn search-button" type="submit"><a href="{% url "goods:catalog" category_slug='all' %}">Найти</a></button>
                             </form>
                         </ul>
                     </div>
@@ -84,7 +84,7 @@
                         <ul class="dropdown-menu">
                             {% tag_categories as categories %}
                             {% for category in categories %}
-                                <li> <a class="dropdown-item" href="{% url "goods:catalog" %}" aria-current="true"> {{category.name}} </a></li>
+                                <li> <a class="dropdown-item" href="{% url "goods:catalog" category.slug%}" aria-current="true"> {{category.name}} </a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -199,7 +199,7 @@
                     <div class="col-lg-4 col-md-12 footer-text text-center">
                         <p>
                             <br>
-                            <a href="{% url "goods:catalog" %}">Наш каталог!</a>
+                            <a href="{% url "goods:catalog" category_slug='all' %}">Наш каталог!</a>
                             <br>
                             <a href="{% url "main:about" %}">Найди нас в Минске!</a>
                         </p>

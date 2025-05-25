@@ -1,19 +1,23 @@
 from unicodedata import category
-from django.shortcuts import render
+from django.shortcuts import get_list_or_404, render
 
 from goods.models import Products
 
-def catalog(request):
+def catalog(request, category_slug):
     
-    products = Products.objects.all()
+    if category_slug == 'all':
+        products = Products.objects.all()
+    else:
+        products = get_list_or_404(Products.objects.filter(category__slug=category_slug))
     
     context = {
         'title': 'Каталог',
         'class': 'catalog',
         'products': products,
+        
     }
     
-    return render(request, "goods/catalog.html", context)
+    return render(request, "goods/catalog.html", context=context)
 
 def product(request, product_slug):
     
