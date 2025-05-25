@@ -17,16 +17,17 @@
                     <div class="product-card">
                         <div>
                             <img src="{{ product.image.url }}" class="card-img-top"
-                            alt="Шоколадка Nesquik duo">    
+                            alt="{{ product.name }}">    
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{product.title}}</h5>
+                            <p class="cart-id"> ID: {{ product.display_id }} </p>
                             <p class="card-text">
-                                {{product.description}}
+                                {{ product.description }}
                             </p>
                             {% if product.discount %}
-                                <p><s> {{ product.price }} </s></p>
-                                <p><strong>Цена: {{ product.sell_price }} рублей</strong></p>
+                                <p><s> Обычная цена: {{ product.price }} </s></p>
+                                <p><strong>Цена со скидкой: {{ product.sell_price }} рублей</strong></p>
                                 <span class="badge bg-warning text-dark"> Скидка {{product.discount}} % </span>
                             {% else %}
                                 <p>Цена: {{product.price}} рублей</p>
