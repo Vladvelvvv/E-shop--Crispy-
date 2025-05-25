@@ -30,10 +30,9 @@
                                         <h5 class="card-title">{{ product.name }}</h5>
                                         <p class="card-id">id: {{product.display_id}}</p>
                                         <p class="card-text">
-                                            {{product.description}}
+                                            {{product.description|truncatechars:45}}
                                         </p>
                                         {% if product.discount %}
-                                            <p><s> Обычная цена: {{ product.price }} </s></p>
                                             <p><strong>Цена со скидкой: {{ product.sell_price }} рублей</strong></p>
                                         {% else %}
                                             <p>Цена: {{product.price}} рублей</p>
@@ -53,6 +52,40 @@
                                     class="call-anim" style="width: 40px" src="{% static "source\files\direct.jpg" %}"
                                     alt="Наш директ"></a></p>
                     </div>
+
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center my-4">
+                            <div class="custom-shadow d-flex">
+                                <li class="page-item {% if not products.has_previous %}disabled{% endif %}">
+                                    <a class="page-link" href="
+                                    {% if products.has_previous %}
+                                    {% url "goods:catalog" slug_url products.previous_page_number %}
+                                    {% else %}
+                                    #
+                                    {% endif %}">Назад
+                                    </a>
+                                </li>
+                                
+                                {% for page in products.paginator.page_range %}
+                                    {% if  page >= products.number|add:-2 and page <= products.number|add:2 %}
+                                        <li class="page-item {% if products.number == page %} active {% endif %}">
+                                            <a class="page-link" href="{% url "goods:catalog" slug_url page %}">{{ page }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                                
+
+                                <li class="page-item {% if not products.has_next %}disabled{% endif %}">
+                                    <a class="page-link" href="
+                                    {% if products.has_next %}
+                                    {% url "goods:catalog" slug_url products.next_page_number %}
+                                    {% else %}
+                                    #
+                                    {% endif %}">Следующая</a>
+                                </li>
+                            </div>
+                        </ul>
+                    </nav>
 
                 </div>
             </div>
