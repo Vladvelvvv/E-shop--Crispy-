@@ -28,6 +28,29 @@ p{
     color:aquamarine;
 }
 
+.search-form{
+    margin-left:200px;
+    height: 50px;
+    
+}
+
+.search-button{
+    height:50px;
+    line-height: 0px;
+    justify-content: center center;
+}
+
+.search-button a{
+    text-decoration: none;
+    color:aquamarine;
+}
+
+.search-input{
+    width:200px;
+    height: 50px;
+    text-align:center;
+}
+
 .container{
     position: relative;
 }

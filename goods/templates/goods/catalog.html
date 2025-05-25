@@ -14,71 +14,36 @@
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 mt-4">
-                        <div class="card">
-                            <a  href="{% url "goods:product" %}">
-                                <img src="{% static "1. catalog/source/images/Сладости/nesquik_duo.webp" %}" class="card-img-top"
-                                alt="Шоколадка Nesquik duo">
-                            </a>
-                            <a  href="{% url "goods:product" %}">
-                                <div class="card-body">
-                                    <h5 class="card-title">Шоколадка Nesquik duo</h5>
-                                    <p class="card-text">
-                                        Плитка, соединяющая в себе нежный белый и молочный шоколад.
-                                        Очень вкусно!
-                                    </p>
-                                    <p>Цена: 5.70 рублей</p>
-                                    <a href="#" class="btn btn-primary">Добавить в корзину</a>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mt-4">
-                        <div class="card">
-                            <a  href="{% url "goods:product" %}">
-                                <img src="{% static "1. catalog/source/images/Сладости/pocke.webp" %}" class="card-img-top"
-                                    alt="Соломка в глазури Pocke">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">Соломка в глазури Pocke</h5>
-                                <p class="card-text">Идеально к чаю или кофе. Превосходный вкус десерта
-                                    дарит райское наслаждение!</p>
-                                <p>Цена: 3.60 рублей</p>
-                                <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                    {% for product in products %}
+                        <div class="col-lg-3 col-md-6 mt-4">
+                            <div class="card">
+                                <a  href="{% url "goods:product" %}">
+                                    {% if product.image %}
+                                        <img src="{{ product.image.url }}" class="card-img-top"
+                                        alt="{{product.name}}">
+                                    {% else %}
+                                        <img src="{% static "source\images\Not found image.png" %}" class="card-img-top" alt="Изображение товара отсутствует">
+                                    {% endif %}
+                                </a>
+                                <a  href="{% url "goods:product" %}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ product.name }}</h5>
+                                        <p class="card-id">id: {{product.display_id}}</p>
+                                        <p class="card-text">
+                                            {{product.description}}
+                                        </p>
+                                        {% if product.discount %}
+                                            <p><s> Обычная цена: {{ product.price }} </s></p>
+                                            <p><strong>Цена со скидкой: {{ product.sell_price }} рублей</strong></p>
+                                        {% else %}
+                                            <p>Цена: {{product.price}} рублей</p>
+                                        {% endif %}
+                                        <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                                    </div>
+                                </a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mt-4">
-                        <div class="card">
-                            <a  href="{% url "goods:product" %}">
-                                <img src="{% static "1. catalog/source/images/Сладости/sourcandy.webp" %}" class="card-img-top"
-                                    alt="Кислые конфетки SourCandy">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">Кислые конфетки SourCandy</h5>
-                                <p class="card-text">Для самых отважных! От кислоты этих леденцов даже могут
-                                    пойти
-                                    слезы!</p>
-                                    <p>Цена: 1.90 рублей</p>
-                                <a href="#" class="btn btn-primary">Добавить в корзину</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mt-4">
-                        <div class="card">
-                            <a  href="{% url "goods:product" %}">
-                                <img src="{% static "1. catalog/source/images/Сладости/mentosduo.webp" %}" class="card-img-top"
-                                    alt="Жевательные конфетки MentosDuo">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">Жевательные конфетки MentosDuo</h5>
-                                <p class="card-text">Яблочная сахарная оболочка и конфета с освежающей начинкой
-                                    внутри!</p>
-                                <p>Цена: 8.90 рублей</p>
-                                <a href="#" class="btn btn-primary">Добавить в корзину</a>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
 
                     <div class="col-lg-12 col-md-12 text-center mt-4">
                         <p>Есть вопросы? Напишите нам в директ!</p>

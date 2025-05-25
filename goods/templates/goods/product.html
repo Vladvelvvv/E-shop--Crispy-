@@ -16,18 +16,22 @@
                 <div class="row">
                     <div class="product-card">
                         <div>
-                            <img src="{% static "1. catalog/source/images/Сладости/nesquik_duo.webp" %}" class="card-img-top"
+                            <img src="{{ product.image.url }}" class="card-img-top"
                             alt="Шоколадка Nesquik duo">    
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Шоколадка Nesquik duo</h5>
+                            <h5 class="card-title">{{product.title}}</h5>
                             <p class="card-text">
-                                Плитка, соединяющая в себе нежный белый и молочный шоколад.
-                                Очень вкусно!
+                                {{product.description}}
                             </p>
-                            <p>420г</p>
-                            <p>Цена: 5.70 рублей</p>
-                            <p>В наличии: 10</p>
+                            {% if product.discount %}
+                                <p><s> {{ product.price }} </s></p>
+                                <p><strong>Цена: {{ product.sell_price }} рублей</strong></p>
+                                <span class="badge bg-warning text-dark"> Скидка {{product.discount}} % </span>
+                            {% else %}
+                                <p>Цена: {{product.price}} рублей</p>
+                            {% endif %}
+                            <p>В наличии: {{product.quantity}}</p>
                             <a href="#" class="btn btn-primary">Добавить в корзину</a>
                             <a href="{% url "goods:catalog" %}" class="btn btn-primary">Назад в каталог</a>
                         </div>
