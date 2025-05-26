@@ -34,7 +34,7 @@
                             {% endif %}
                             <p>В наличии: {{product.quantity}}</p>
                             <a href="#" class="btn btn-primary">Добавить в корзину</a>
-                            <a href="{% url "goods:catalog" %}" class="btn btn-primary">Назад в каталог</a>
+                            <a href="{% url "goods:catalog" category_slug='all' %}" class="btn btn-primary">Назад в каталог</a>
                         </div>
                     </div>
 
