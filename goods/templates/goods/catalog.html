@@ -21,10 +21,13 @@
                                 Фильтры
                             </button>
                     
-                            <form action="{% url "goods:catalog" slug_url %}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
+                            <form action="{% if request.GET.q %}{% url "goods:search" %}{% else %}{% url "goods:catalog" slug_url %}{% endif %}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
                                 <div class="form-check text-white mx-3">
                                     <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" {% if request.GET.on_sale == 'on' %}checked{% endif %}>
-                                    {% comment %} <input type="hidden" name="q" value="request.GET.q"> {% endcomment %}
+                                    {% if request.GET.q %}
+                                        <input type="hidden" name="q" value="{{request.GET.q}}">
+                                    {% endif %}
+                                    
                                     <label class="form-check-label" for="flexCheckDefault">
                                         Товары по акции
                                     </label>
@@ -65,7 +68,6 @@
                                 <a  href="{% url "goods:product" product.slug %}">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ product.name }}</h5>
-                                        <p class="card-id">id: {{product.display_id}}</p>
                                         <div class="product-description" style="height:80px">
                                             <p class="card-text">
                                                 {{product.description|truncatechars:45}}
