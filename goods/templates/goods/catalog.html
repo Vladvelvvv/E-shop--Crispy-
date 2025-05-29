@@ -1,4 +1,4 @@
-{% extends "main/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% load goods_tags %}
 
@@ -7,9 +7,107 @@
     <link rel="stylesheet" href="{% static "source\styles\bg-images\catalog-bg-image\catalog-bg-image.css" %}">
 {% endblock %}
 
-{% block content %}    
-</body>
-    <div class="container-fluid mt-4">
+{% block content %}  
+    <div class="container">
+        <div class="row mt-1 position-fixed z-3">
+            <div class="dropdown mb-2">
+                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Каталог
+                    <img class="mx-1" src="{% static "source\cart\icons\grid-fill.svg" %}" alt="Catalog Icon" width="16"
+                        height="16">
+                </button>
+                <ul class="dropdown-menu">
+                    {% tag_categories as categories %}
+                    {% for category in categories %}
+                        <li> <a class="dropdown-item" href="{% url "goods:catalog" category.slug%}" aria-current="true"> {{category.name}} </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <button type="button" class="btn btn-dark btn-secondary d-flex" id="modalButton"
+                    aria-expanded="false">
+                    <img class="mx-1" src="{% static "source\cart\icons\basket.svg" %}" alt="Catalog Icon" width="24"
+                        height="24">
+                    <span id="goods-in-cart-count">0</span>
+                </button>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h3 class="text-center mb-4">Корзина</h3>
+                            <div class="container" id="cart-items-container">
+                                <div class="card-wrapper mb-3">
+                                    <div class="card-header">
+                                        <h5 class="card-title">Товар</h5>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="modal-li list-group-item">
+                                            <div class="row text-center">
+                                                <div class="col p-0">
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="mini-cart-decrement"
+                                                                style="background-color:white;"
+                                                                data-cart-id=""
+                                                                data-cart-change-url="">-</button>
+                                                        </span>
+                                                        <input type="text"
+                                                            class="mini-cart-form form-control number" value="1"
+                                                            style="background-color:blanchedalmond;" readonly>
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="mini-cart-increment"
+                                                                style="background-color:white"
+                                                                data-cart-id=""
+                                                                data-cart-change-url="">+</button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col p-0">
+                                                    <p>x 100.00 =</p>
+                                                </div>
+                                                <div class="col p-0">
+                                                    <strong>100.00 $</strong>
+                                                </div>
+                                                <div class="col p-0" style="margin-right:10px">
+                                                    <a href="#" class="remove-from-cart" data-cart-id="">
+                                                        <img class="mx-1" src="{% static "source\cart\icons\trash.svg" %}"
+                                                            alt="Catalog Icon" width="16" height="16">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-wrapper mb-3 shadow-lg">
+                                    <div class="card-footer">
+                                        <p class="float-left">Итого
+                                            <strong>1</strong> товар(а) на сумму
+                                        </p>
+                                        <h4 class="float-left">
+                                            <strong>100.00 $</strong>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align:center">
+                                <a class="btn btn-dark" href="orders/create_order.html">
+                                    Оформить заказ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="padding-top:25px">
         <div class="row">
             <div class="col-lg-2">
             </div>

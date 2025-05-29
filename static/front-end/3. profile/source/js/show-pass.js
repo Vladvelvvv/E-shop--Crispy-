@@ -4,12 +4,10 @@ function showPassword() {
     
     if (passwordField.type == "password"){
         passwordField.type = "text";
-        eyeicon.src = "source/icons/eye-close.png";
+        eyeicon.src = '{% static "3. profile\source\icons\eye-close.png" %}';
     }
     else{
         passwordField.type = "password";
-        eyeicon.src = "source/icons/eye-open.png";
+        eyeicon.src = '{% static "3. profile\source\icons\eye-open.png" %}';
     }
-
-
-    }  
+}  

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "3. profile\source\styles\profile.css" %}">
+    <link rel="stylesheet" href="{% static "source\styles\bg-images\profile-bg-image\profile-bg-image.css" %}">
+    <link href="{% static "3. profile/source/files/webicons/free/fonts/basic/boxicons.css" %}" rel='stylesheet'>
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="form wrapper" style="margin-left:240px">
+        <form action="{% url "users:profile" %}">
+            <h1>Вход</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Имя пользователя" class="form-input" required>
+                <i class='bx-user-circle'></i>
+            </div>
+            <div class="input-box">
+                <div style="display:inline; position:relative;">
+                    <input type="password" id="password" class="form-input" placeholder="Пароль" required>
+                    <input type="button" onclick="showPassword()" style="position:absolute; right: 10px; bottom:15px; z-index:1; opacity:0;"></input>
+                    <img id="eyeicon" width=20px style="position:absolute; right: 10px; bottom:5px; z-index:0;" src="{% static "3. profile\source\icons\eye-open.png" %}" alt="">
+                </div>
+                <i class='bx-lock-keyhole'></i>
+            </div>
+            <div class="remember">
+                <label for=""><input type="checkbox">Запомни меня</label>
+                <a href="{% url "users:forget-password" %}">Забыли пароль?</a>
+            </div>
+
+            <div style="text-align:center">
+                <button type="submit" class="btn"><a href="{% url "users:profile" %}" style="text-decoration:none; color:aquamarine">Войти</a></button>
+            </div>
+
+            <div class="register-link">
+                <p>Еще не зарегистрировались? <a href="{% url "users:registration" %}">Создайте аккаунт</a></p>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+        
+   

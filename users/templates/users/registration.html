@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "3. profile\source\styles\profile.css" %}">
+    <link rel="stylesheet" href="{% static "source\styles\bg-images\profile-bg-image\profile-bg-image.css" %}">
+    <link href="{% static "source/files/webicons/free/fonts/basic/boxicons.css' rel='stylesheet" %}">
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="wrapper" style="margin-left:240px">
+        <form action="{% url "users:profile" %}">
+            <h1>Приветствуем!</h1>
+            <div class="input-box">
+                <input type="text" style="width:350px" placeholder="Как вас зовут?" required>
+            </div>
+            <div class="input-box">
+                <input type="text" style="width:350px" placeholder="Ваша фамилия?" required>
+            </div>
+            <div class="input-box">
+                <input type="text" style="width:350px" placeholder="Ваша дата рождения?" required>
+            </div>
+            <div class="input-box">
+                <input type="text" style="width:350px" placeholder="Введите имя пользователя" required>
+            </div>
+            <div class="input-box  mb-2">
+                <input type="text" style="width:350px" placeholder="Ваш E-mail">
+            </div>
+            <div class="input-box">
+                <input type="password" style="width:350px" placeholder="Придумайте пароль" required>
+            </div>
+            <div class="input-box">
+                <input type="password" style="width:350px" placeholder="Проверьте пароль" required>
+            </div>
+
+            <div style="text-align:center">
+                <button type="submit" class="btn"><a style="text-decoration:none; color:aquamarine" href="{% url "users:profile" %}">Создать аккаунт</a></button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
