@@ -13,32 +13,56 @@
 
 {% block content %}
     <div class="wrapper" style="margin-left:240px">
-        <form action="{% url "users:profile" %}">
+        <form action="{% url "users:registration" %}" method="post">
+            {% csrf_token %}
             <h1>Приветствуем!</h1>
-            <div class="input-box">
-                <input type="text" style="width:350px" placeholder="Как вас зовут?" required>
-            </div>
-            <div class="input-box">
-                <input type="text" style="width:350px" placeholder="Ваша фамилия?" required>
-            </div>
-            <div class="input-box">
-                <input type="text" style="width:350px" placeholder="Ваша дата рождения?" required>
-            </div>
-            <div class="input-box">
-                <input type="text" style="width:350px" placeholder="Введите имя пользователя" required>
-            </div>
-            <div class="input-box  mb-2">
-                <input type="text" style="width:350px" placeholder="Ваш E-mail">
-            </div>
-            <div class="input-box">
-                <input type="password" style="width:350px" placeholder="Придумайте пароль" required>
-            </div>
-            <div class="input-box">
-                <input type="password" style="width:350px" placeholder="Проверьте пароль" required>
+            <div class="row">
+                <div class="input-box col-md-6">
+                    <input type="text" name="first_name" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" style="width:350px" placeholder="Как вас зовут?" required>
+                    {% if form.first_name.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
+                    {% endif %}
+                </div>
+                <div class="input-box col-md-6">
+                    <input type="text" name="last_name" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" style="width:350px" placeholder="Ваша фамилия?" required>
+                    {% if form.last_name.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
+                    {% endif %}
+                </div>
+                <div class="input-box col-md-6">
+                    <input type="text" name="birth_day" value="{% if form.birth_day.value %}{{form.birth_day.value}}{% endif %}" style="width:350px" placeholder="Ваша дата рождения?" required>
+                    {% if form.birth_day.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show">{{form.birth_day.errors}}</div>
+                    {% endif %}
+                </div>
+                <div class="input-box col-md-6">
+                    <input type="text" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" style="width:350px" placeholder="Введите имя пользователя" required>
+                    {% if form.username.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
+                    {% endif %}
+                </div>
+                <div class="input-box col-md-6">
+                    <input type="text" name="email" value="{% if form.email.value %}{{form.email.value}}{% endif %}" style="width:350px" placeholder="Ваш E-mail" required>
+                    {% if form.email.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
+                    {% endif %}
+                </div>
+                <div class="input-box col-md-6">
+                    <input type="password" name="password1" style="width:350px" placeholder="Придумайте пароль" required>
+                    {% if form.password1.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show">{{form.password1.errors}}</div>
+                    {% endif %}
+                </div>
+                <div class="input-box col-md-6">
+                    <input type="password" name="password2" style="width:350px" placeholder="Проверьте пароль" required>
+                    {% if form.password2.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show">{{form.password2.errors}}</div>
+                    {% endif %}
+                </div>
             </div>
 
-            <div style="text-align:center">
-                <button type="submit" class="btn"><a style="text-decoration:none; color:aquamarine" href="{% url "users:profile" %}">Создать аккаунт</a></button>
+            <div style="text-align:center; margin-top:20px">
+                <button type="submit" class="btn"><a style="text-decoration:none; color:aquamarine" href="{% url "users:registration" %}">Создать аккаунт</a></button>
             </div>
         </form>
     </div>

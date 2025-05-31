@@ -60,8 +60,14 @@
                                         </div>
                                     </form>
                                     <div style="text-align:center">
+                                        {% if user.is_admin or user.is_staff %}
+                                            <a href="{% url "admin:index" %}" style="text-decoration:none; color:aquamarine"><button type="submit" class="btn">Админ-панель</button></a>
+                                        {% endif %}
+                                    </div>
+                                    <div style="text-align:center">
                                         <button type="submit" class="btn"><a href="{% url "users:logout" %}" style="text-decoration:none; color:aquamarine">Выйти из профиля</a></button>
                                     </div>
+                                    
                                 </div>
                             </div>
                             <div class="col-md-7">

@@ -12,17 +12,26 @@
 
 
 {% block content %}
-    <div class="form wrapper" style="margin-left:240px">
-        <form action="{% url "users:profile" %}">
+    <div class="form wrapper login-wrapper" style="margin-left:240px; width: 800px;">
+        <form action="{% url "users:login" %}" method="post">
+            {% csrf_token %}
             <h1>Вход</h1>
+            {% if form.non_field_errors %}    
+                <div style="width: 100%;">
+                    <div class="alert alert-danger alert-dismissible fade show custom-shadow" role="alert">
+                        {{form.non_field_errors}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% endif %}
             <div class="input-box">
-                <input type="text" placeholder="Имя пользователя" class="form-input" required>
+                <input type="text" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" placeholder="Имя пользователя" class="form-input" style="width:300px" autofocus: "True" required>
                 <i class='bx-user-circle'></i>
             </div>
             <div class="input-box">
                 <div style="display:inline; position:relative;">
-                    <input type="password" id="password" class="form-input" placeholder="Пароль" required>
-                    <input type="button" onclick="showPassword()" style="position:absolute; right: 10px; bottom:15px; z-index:1; opacity:0;"></input>
+                    <input type="password" name="password" id="password" class="form-input" style="width:300px" placeholder="Пароль" autocomplete : "current-password" required>
+                    <input type="button" onclick="showPassword()" style="position:absolute; right: 10px; bottom:15px; z-index:1000; opacity:0;"></input>
                     <img id="eyeicon" width=20px style="position:absolute; right: 10px; bottom:5px; z-index:0;" src="{% static "3. profile\source\icons\eye-open.png" %}" alt="">
                 </div>
                 <i class='bx-lock-keyhole'></i>
@@ -32,8 +41,8 @@
                 <a href="{% url "users:forget-password" %}">Забыли пароль?</a>
             </div>
 
-            <div style="text-align:center">
-                <button type="submit" class="btn"><a href="{% url "users:profile" %}" style="text-decoration:none; color:aquamarine">Войти</a></button>
+            <div style="text-align:center;">
+                <button type="submit" class="btn">Войти</button>
             </div>
 
             <div class="register-link">

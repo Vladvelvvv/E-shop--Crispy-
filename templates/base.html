@@ -47,16 +47,19 @@
                         <li class="nav-item">
                             <a class="nav-link" href="..\2. cart\0. cart.html">Корзина</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url "users:profile" %}">Профиль</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url "users:login" %}">Войти</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url "users:registration" %}">Регистрация</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "users:profile" %}">Профиль</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "users:login" %}">Войти</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "users:registration" %}">Регистрация</a>
+                            </li>
+                        {% endif %}
+        
                         <li class="nav-item">
                             <a class="nav-link" href="{% url "main:about" %}">О нас</a>
                         </li>
@@ -71,7 +74,7 @@
         <!-- Конец навигационной панели -->
     </header>
     <section class="section" id="content">
-
+        
         {% block content %}{% endblock %}
 
                 <div class="col-lg-2 col-md-12">
