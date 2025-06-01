@@ -12,6 +12,7 @@
 
 
 {% block content %}
+
     <div class="form wrapper login-wrapper" style="margin-left:240px; width: 800px;">
         <form action="{% url "users:login" %}" method="post">
             {% csrf_token %}

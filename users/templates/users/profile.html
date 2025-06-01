@@ -11,6 +11,7 @@
 
 
 {% block content %}
+    
     <div class="container-fluid mt-4" >
         <div class="row">
             <div class="col-lg-2">
@@ -22,50 +23,85 @@
                             <div class="col-md-5">
                                 <div class="profile p-4 mb-4 mx-2 rounded custom-shadow" style="text-align:center">
                                     <h3 class="profile-header text-center mb-4">Профиль</h3>
-                                    <form>
-                                        <div class="profile-image mb-2" style="margin-left:87.5px">
-                                            <img src="{% static "3. profile/source/images/profile image.jpg" %}" alt="Изображение профиля">
-                                        </div>
+                                    <form action="{% url "users:profile" %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+
+                                        {% if user.image %}
+                                            <div class="profile-image mb-2" style="margin-left:87.5px">
+                                                <img src="{{ user.image.url }}" alt="Изображение профиля">
+                                            </div>
+                                        {% else %}
+                                            <div class="profile-image mb-2" style="margin-left:87.5px">
+                                                <img src="{% static "3. profile/source/images/profile image.jpg" %}" alt="Изображение профиля">
+                                            </div>
+                                        {% endif %}
                                         <div class="input-box">
                                             <label for="file-upload" class="custom-file-upload">
                                                 Загрузить изображение
                                             </label>
-                                            <input type="file" id="file-upload">
+                                            <input type="file" name="image" id="file-upload">
+                                            {% if form.image.errors %}
+                                                <div class="alert alert-danger alert-dismissible fade show">{{form.image.errors}}</div>
+                                            {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" placeholder="Имя">
-                                            <i class='bxs-user-id-card'></i>
+                                            <input type="text" name="first_name" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" placeholder="Имя">
+                                            {% if form.first_name.errors %}
+                                                <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
+                                            {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" placeholder="Фамилия">
+                                            <input type="text" name="last_name" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" placeholder="Фамилия">
+                                            {% if form.last_name.errors %}
+                                                <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
+                                            {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" placeholder="Дата рождения">
+                                            {% if form.birth_day.value %}
+                                                <input type="text" name="birth_day" value="{{ form.birth_day.value }}" placeholder="Дата рождения"> 
+                                            {% else %}
+                                                <input type="date" name="birth_day" value="{{ form.birth_day.value }}" placeholder="Дата рождения">
+                                            {% endif %}
+                                            {% if form.birth_day.errors %}
+                                                <div class="alert alert-danger alert-dismissible fade show">{{form.birth_day.errors}}</div>
+                                            {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" placeholder="Имя пользователя">
+                                            <input type="text" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" placeholder="Имя пользователя">
+                                            {% if form.username.errors %}
+                                                <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
+                                            {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" placeholder="E-mail">
+                                            <input type="text" name="email" value="{% if form.email.value %}{{form.email.value}}{% endif %}" placeholder="E-mail">
+                                            {% if form.email.errors %}
+                                                <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
+                                            {% endif %}
+                                        </div>
+                                        {% comment %} <div class="input-box  mb-2">
+                                           <input type="password" name="new_password" style="margin-bottom:40px" value="{% if form.password1.value %}{{form.password1.value}}{% endif %}" placeholder="Новый пароль">
+                                            {% if form.new_password.errors %}
+                                                <div class="alert alert-danger alert-dismissible fade show">{{form.new_password.errors}}</div>
+                                            {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="password" placeholder="Пароль">
-                                        </div>
-                                        <div class="input-box  mb-2">
-                                            <input type="password" placeholder="Проверьте пароль">
-                                        </div>
+                                            <input type="password" name="current_password" value="{% if form.password2.value %}{{form.password2.value}}{% endif %}" placeholder="Текущий пароль">
+                                            {% if form.current_password.errors %}
+                                                <div class="alert alert-danger alert-dismissible fade show">{{form.current_password.errors}}</div>
+                                            {% endif %}
+                                        </div> {% endcomment %}
 
                                         <div style="text-align:center">
-                                            <button type="submit" class="btn">Внести изменения</button>
+                                            <button type="submit" class="btn" style="margin-bottom:20px">Внести изменения</button>
                                         </div>
                                     </form>
-                                    <div style="text-align:center">
+                                    <div style="text-align:center; margin-bottom:20px">
                                         {% if user.is_admin or user.is_staff %}
-                                            <a href="{% url "admin:index" %}" style="text-decoration:none; color:aquamarine"><button type="submit" class="btn">Админ-панель</button></a>
+                                            <a href="{% url "admin:index" %}" style="text-decoration:none; color:aquamarine;"><button type="submit" class="btn">Админ-панель</button></a>
                                         {% endif %}
                                     </div>
                                     <div style="text-align:center">
-                                        <button type="submit" class="btn"><a href="{% url "users:logout" %}" style="text-decoration:none; color:aquamarine">Выйти из профиля</a></button>
+                                        <a href="{% url "users:logout" %}" style="text-decoration:none; color:aquamarine"><button type="submit" class="btn">Выйти из профиля</button></a>
                                     </div>
                                     
                                 </div>
