@@ -45,7 +45,7 @@
                             <a class="nav-link" href="{% url "goods:catalog" category_slug='all' %}">Каталог</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="..\2. cart\0. cart.html">Корзина</a>
+                            <a class="nav-link" href="{% url "carts:cart" %}">Корзина</a>
                         </li>
                         {% if user.is_authenticated %}
                             <li class="nav-item">
