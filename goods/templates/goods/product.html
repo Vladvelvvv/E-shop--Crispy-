@@ -36,7 +36,8 @@
                                     <p>Цена: {{product.price}} рублей</p>
                                 {% endif %}
                                 <p>В наличии: {{product.quantity}}</p>
-                                <a href="{% url "carts:cart_add" product.slug %}" class="btn btn-primary">Добавить в корзину</a>
+                                <a href="{% url "carts:cart_add" %}" class="btn add-button add-to-cart" data-product-id="{{product.id}}">Добавить в корзину</a>
+                                {% csrf_token %}
                                 <a href="{% url "goods:catalog" category_slug='all' %}" class="btn btn-primary">Назад в каталог</a>
                             </div>
                         </div>
