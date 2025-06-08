@@ -57,7 +57,8 @@
                                                         </div>
                                                         <div class="mini-cart-form-text col p-0" style="margin-right:10px">
                                                             {% csrf_token %}
-                                                            <a href="{% url "carts:cart_remove" %}" class="remove-from-cart" data-cart-id="">
+                                                            <a href="{% url "carts:cart_remove" %}" class="remove-from-cart" data-cart-id="{{cart.id}}">
+                                                                {% csrf_token %}
                                                                 <img class="mx-1" src="{% static "base\source\files\base_files\mini-cart_files\trash.svg" %}"
                                                                     alt="Catalog Icon" width="16" height="16">
                                                             </a>
