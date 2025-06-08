@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load carts_tags %}
 
 
 {% block css %}
-    <link rel="stylesheet" href="{% static "3. profile\source\styles\profile.css" %}">
-    <link rel="stylesheet" href="{% static "source\styles\bg-images\profile-bg-image\profile-bg-image.css" %}">
+    <link rel="stylesheet" href="{% static "base\source\styles\4user_css\0profile.css" %}">
 {% endblock %}
 
 
@@ -16,7 +15,7 @@
         <div class="row">
             <div class="col-lg-2">
             </div>
-            <div class="col-lg-10 col-md-12">
+            <div class="col-lg-9 col-md-10">
                 <div class="row">
                     <div class="container mt-5">
                         <div class="row wrapper-profile">
@@ -27,12 +26,12 @@
                                         {% csrf_token %}
 
                                         {% if user.image %}
-                                            <div class="profile-image mb-2" style="margin-left:87.5px">
+                                            <div class="profile-image mb-2" style="margin-left:105px">
                                                 <img src="{{ user.image.url }}" alt="Изображение профиля">
                                             </div>
                                         {% else %}
-                                            <div class="profile-image mb-2" style="margin-left:87.5px">
-                                                <img src="{% static "3. profile/source/images/profile image.jpg" %}" alt="Изображение профиля">
+                                            <div class="profile-image mb-2" style="margin-left:105px">
+                                                <img src="{% static "base/source/images/profile_images/profile image.jpg" %}" alt="Изображение профиля">
                                             </div>
                                         {% endif %}
                                         <div class="input-box">
@@ -45,35 +44,35 @@
                                             {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" name="first_name" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" placeholder="Имя">
+                                            <input type="text" style="background-color:blanchedalmond" name="first_name" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" placeholder="Имя">
                                             {% if form.first_name.errors %}
                                                 <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
                                             {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" name="last_name" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" placeholder="Фамилия">
+                                            <input type="text" style="background-color:blanchedalmond" name="last_name" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" placeholder="Фамилия">
                                             {% if form.last_name.errors %}
                                                 <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
                                             {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
                                             {% if form.birth_day.value %}
-                                                <input type="text" name="birth_day" value="{{ form.birth_day.value }}" placeholder="Дата рождения"> 
+                                                <input type="text" style="background-color:blanchedalmond" name="birth_day" value="{{ form.birth_day.value }}" placeholder="Дата рождения"> 
                                             {% else %}
-                                                <input type="date" name="birth_day" value="{{ form.birth_day.value }}" placeholder="Дата рождения">
+                                                <input type="date" style="background-color:blanchedalmond" name="birth_day" value="{{ form.birth_day.value }}" placeholder="Дата рождения">
                                             {% endif %}
                                             {% if form.birth_day.errors %}
                                                 <div class="alert alert-danger alert-dismissible fade show">{{form.birth_day.errors}}</div>
                                             {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" placeholder="Имя пользователя">
+                                            <input type="text" style="background-color:blanchedalmond" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" placeholder="Имя пользователя">
                                             {% if form.username.errors %}
                                                 <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
                                             {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" name="email" value="{% if form.email.value %}{{form.email.value}}{% endif %}" placeholder="E-mail">
+                                            <input type="text" style="background-color:blanchedalmond" name="email" value="{% if form.email.value %}{{form.email.value}}{% endif %}" placeholder="E-mail">
                                             {% if form.email.errors %}
                                                 <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
                                             {% endif %}
@@ -106,16 +105,14 @@
                                     
                                 </div>
                             </div>
+                            {% user_carts request as carts %}
                             <div class="col-md-7">
                                 <div class="p-4 mb-4 mx-2 rounded custom-shadow" style="text-align:center">
                                     <h3 class="profile-header text-center mb-4">Корзина</h3>
                                     <div class="container" id="cart-items-container">
                                         {% include "carts/includes/included_cart.html" %}
                                     </div>
-                                    <a class="btn btn-dark" href="../orders/create_order.html">
-                                        Оформить заказ
-                                    </a>
-                                    <a href="{% url "goods:catalog" category_slug='all' %}" class="btn btn-dark">
+                                    <a href="{% url "goods:catalog" category_slug='all' %}" class="btn btn-dark" style="margin-top:20px">
                                         Назад в каталог
                                     </a>
                                 </div>

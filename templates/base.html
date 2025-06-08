@@ -1,45 +1,43 @@
 {% load static %}
-{% load goods_tags %}
+
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <!--  -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static "source\files\favicon\apple-touch-icon.png" %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static "source\files\favicon\favicon-32x32.png" %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static "source/files/favicon/favicon-16x16.png" %}">
-    <link rel="manifest" href="{% static "source\files\favicon\site.webmanifest" %}">
-    <link rel="stylesheet" href="{% static "source\bootstrap-5.2.3-dist\css\bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "source\styles\base\base.css" %}">
-    <link rel="stylesheet" href="{% static "2. cart\source\styles\cart.css" %}">
-    <link rel="stylesheet" href="{% static "source\styles\navbar\navbar.css" %}">
-    <link rel="stylesheet" href="{% static "source\styles\footer\footer.css" %}">
+    <title>{{title}}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "base\source\files\base_files\favicon\apple-touch-icon.png" %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static "source\files\base_files\favicon\favicon-32x32.png" %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static "base\source\files\base_files\favicon\favicon-16x16.png" %}">
+    <link rel="manifest" href="{% static "base\source\files\base_files\favicon\site.webmanifest" %}">
+    <link rel="stylesheet" href="{% static "base\source\styles\base_css\bootstrap-5.2.3-dist\css\bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "base\source\styles\base_css\base.css" %}">
+    <link rel="stylesheet" href="{% static "base\source\styles\base_css\navbar.css" %}">
+    <link rel="stylesheet" href="{% static "base\source\styles\base_css\footer.css" %}">
+    <link rel="stylesheet" href="{% static "base\source\styles\base_css\mini-cart.css" %}">
+    <link href="{% static "base\source\webicons\free\fonts\basic\boxicons.css" %}" rel='stylesheet'>
     {% block css %}
     {% endblock %}
+
 </head>
 
 <body class="{{class}}">
-    
+
     <header class="header" id="top">
-        <!-- Навигационная панель -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url "main:index" %}">
-                    <img src="{% static "source\files\logo_crispy.png" %}" alt="Логотип сайта">
+                    <img src="{% static "base\source\files\base_files\header_files\logo_crispy.png" %}" alt="Логотип сайта">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url "main:index" %}"> Главная
-                                страница</a>
+                            <a class="nav-link" aria-current="page" href="{% url "main:index" %}"> Главная страница</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url "goods:catalog" category_slug='all' %}">Каталог</a>
@@ -58,46 +56,35 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url "users:registration" %}">Регистрация</a>
                             </li>
-                        {% endif %}
-        
+                        {% endif %}                                            
                         <li class="nav-item">
                             <a class="nav-link" href="{% url "main:about" %}">О нас</a>
                         </li>
                         <form class="d-flex search-form" role="search" action="{% url "goods:search" %}" method="get">
                             <input class="form-control me-2 search-input" type="search" name="q" placeholder="Поиск по каталогу" aria-label="Search">
-                            <button class="btn search-button" type="submit"><a href="{% url "goods:catalog" category_slug='all' %}">Найти</a></button>
+                            <button class="btn search-button" type="submit"><a href="{% url "goods:search" %}">Найти</a></button>
                         </form>
                     </ul>
                 </div>
             </div>
         </nav>
-        <!-- Конец навигационной панели -->
     </header>
+
+
+
     <section class="section" id="content">
+
+        {% block modal %}{% endblock  %}
         
         {% include "includes/notifications.html" %}
         {% block content %}{% endblock %}
 
-                <div class="col-lg-2 col-md-12">
-                    <div class="row px-2">
-                        <div class="col-lg-12 sidebar my-4">
-
-                        </div>
-                        <div class="col-lg-12 sidebar my-4">
-
-                        </div>
-                        <div class="col-lg-12 sidebar my-4">
-
-                        </div>
-                        <div class="col-lg-12 sidebar my-4">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </section>
-    <footer class="footer" id="bottom">
+
+
+
+    <footer class="footer" if="bottom">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4 col-md-12 footer-text text-center">
@@ -114,17 +101,20 @@
                 <div class="col-lg-4 col-md-12 footer-text text-center media-links">
                     <p>Наша инста</p>
                     <a href="https://www.instagram.com/crispy.by/" target="_blank">
-                        <img class="footer-img" src="{% static "source\styles\footer\images\Instagram_icon.png" %}"
+                        <img class="footer-img" src="{% static "base\source\files\base_files\footer_files\Instagram_icon.png" %}"
                             alt="Наш инстаграмм">
                     </a>
                 </div>
             </div>
         </div>
     </footer>
-    <script src="{% static "source\bootstrap-5.2.3-dist\js\bootstrap.bundle.min.js" %}"></script>
-    <script src="{% static "source\js\jquery\jquery-3.7.0.min.js" %}"></script>
-    <script src="{% static "source\js\jquery-ajax.js" %}"></script>
-    <script src="{% static "0. index\source\js\slider.js" %}"></script>
+    
+    <script src="{% static "base\source\js\base_js\bootstrap-5.2.3-dist\js\bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "base\source\js\base_js\jquery\jquery-3.7.0.min.js" %}"></script>
+    <script src="{% static "base\source\js\base_js\jquery-ajax.js" %}"></script>
+    <script src="{% static "base\source\js\base_js\file-loader.js" %}"></script>
+    <script src="{% static "base\source\js\base_js\slider.js" %}"></script>
+    <script src="{% static "base\source\js\base_js\show-pass.js" %}"></script>
     <script>
         function showPassword() {
             var passwordField = document.getElementById("password");
@@ -140,6 +130,7 @@
             }
         }  
     </script>
+
 </body>
 
 </html>

@@ -1,0 +1,92 @@
+.catalog{
+    background: #ffffff url(Catalog.jpg) center top/cover no-repeat;
+}
+
+.product-title{
+    height:50px;
+    font-size: 24px;
+    font-weight:600;
+}
+
+.product-text{
+    height:50px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.product-description{
+    height:50px;
+    margin-bottom:20px;
+}
+
+.product-id{
+    color:white;
+    font-size:15px;
+}
+
+.product-img-top{
+    width:150px;
+    height: 200px;
+    
+}
+
+.product{
+    position: relative;
+    z-index: 1000;
+    height: 550px;
+    background-color: rgba(21, 167, 5, 0.75);
+    text-align: center;
+    border-radius: 50px;
+}
+
+.product a{
+    text-decoration: none;
+    color: black;
+}
+
+.product a:hover .product-img{
+    text-decoration: none;
+    color: black;
+    border-radius: 50px;
+    background-color: aquamarine;
+}
+
+.add-button:hover{
+    background-color: aquamarine;
+    color:black;
+    border-radius: 75px;
+}
+
+.product-card{
+    height: 600px;
+    width: 700px;
+    background-color: rgba(21, 167, 5, 0.75);
+    text-align: center;
+    border-radius: 50px;
+    font-weight: 1000px;
+    
+}
+
+.product-card a{
+    color: black;
+    
+}
+
+.product-card a:hover{
+    background-color: aquamarine;
+    color:rgba(21, 167, 5, 0.83);
+}
+
+.product-card-text{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.product-img{
+    height:200px;
+}
+
+.discount{
+    position: absolute;
+    font-size: 20px;
+}

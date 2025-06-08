@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'main',
     'goods',
     'users',
-    'carts'
+    'carts',
+    'orders',
     
 ]
 
@@ -133,7 +134,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static' / 'front-end']
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 INTERNAL_IPS = [
     # ...

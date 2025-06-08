@@ -1,69 +1,81 @@
 {% extends "base.html" %}
 {% load static %}
 
-
+{% block modal %}
+    {% include "includes/modal_button.html" %}
+{% endblock  %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static "3. profile\source\styles\profile.css" %}">
-    <link rel="stylesheet" href="{% static "source\styles\bg-images\profile-bg-image\profile-bg-image.css" %}">
-    <link href="{% static "source/files/webicons/free/fonts/basic/boxicons.css' rel='stylesheet" %}">
+    <link rel="stylesheet" href="{% static "base\source\styles\4user_css\0profile.css" %}">
+    <link rel="stylesheet" href="{% static "base\source\styles\4user_css\1login.css" %}">
 {% endblock %}
 
 
 
 {% block content %}
-    <div class="wrapper" style="margin-left:240px">
-        <form action="{% url "users:registration" %}" method="post">
-            {% csrf_token %}
-            <h1>Приветствуем!</h1>
-            <div class="row">
-                <div class="input-box col-md-6">
-                    <input type="text" name="first_name" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" style="width:350px" placeholder="Как вас зовут?" required>
-                    {% if form.first_name.errors %}
-                        <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
-                    {% endif %}
-                </div>
-                <div class="input-box col-md-6">
-                    <input type="text" name="last_name" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" style="width:350px" placeholder="Ваша фамилия?" required>
-                    {% if form.last_name.errors %}
-                        <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
-                    {% endif %}
-                </div>
-                <div class="input-box col-md-6">
-                    <input type="text" name="birth_day" value="{% if form.birth_day.value %}{{form.birth_day.value}}{% endif %}" style="width:350px" placeholder="Ваша дата рождения?" required>
-                    {% if form.birth_day.errors %}
-                        <div class="alert alert-danger alert-dismissible fade show">{{form.birth_day.errors}}</div>
-                    {% endif %}
-                </div>
-                <div class="input-box col-md-6">
-                    <input type="text" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" style="width:350px" placeholder="Введите имя пользователя" required>
-                    {% if form.username.errors %}
-                        <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
-                    {% endif %}
-                </div>
-                <div class="input-box col-md-6">
-                    <input type="text" name="email" value="{% if form.email.value %}{{form.email.value}}{% endif %}" style="width:350px" placeholder="Ваш E-mail" required>
-                    {% if form.email.errors %}
-                        <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
-                    {% endif %}
-                </div>
-                <div class="input-box col-md-6">
-                    <input type="password" name="password1" style="width:350px" placeholder="Придумайте пароль" required>
-                    {% if form.password1.errors %}
-                        <div class="alert alert-danger alert-dismissible fade show">{{form.password1.errors}}</div>
-                    {% endif %}
-                </div>
-                <div class="input-box col-md-6">
-                    <input type="password" name="password2" style="width:350px" placeholder="Проверьте пароль" required>
-                    {% if form.password2.errors %}
-                        <div class="alert alert-danger alert-dismissible fade show">{{form.password2.errors}}</div>
-                    {% endif %}
-                </div>
-            </div>
+<div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-lg-3">
 
-            <div style="text-align:center; margin-top:20px">
-                <button type="submit" class="btn"><a style="text-decoration:none; color:aquamarine" href="{% url "users:registration" %}">Создать аккаунт</a></button>
             </div>
-        </form>
+            <div class="col-lg-8 col-md-12">
+                <div class="login-wrapper">
+                    <form action="{% url "users:registration" %}" method="post">
+                        {% csrf_token %}
+                        <h1>Приветствуем!</h1>
+                        <div class="row">
+                            <div class="input-box col-md-6">
+                                <input type="text" name="first_name" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" style="width:350px" placeholder="Как вас зовут?" required>
+                                {% if form.first_name.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
+                                {% endif %}
+                            </div>
+                            <div class="input-box col-md-6">
+                                <input type="text" name="last_name" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" style="width:350px" placeholder="Ваша фамилия?" required>
+                                {% if form.last_name.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
+                                {% endif %}
+                            </div>
+                            <div class="input-box col-md-6">
+                                <input type="text" name="birth_day" value="{% if form.birth_day.value %}{{form.birth_day.value}}{% endif %}" style="width:350px" placeholder="Ваша дата рождения?" required>
+                                {% if form.birth_day.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.birth_day.errors}}</div>
+                                {% endif %}
+                            </div>
+                            <div class="input-box col-md-6">
+                                <input type="text" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" style="width:350px" placeholder="Введите имя пользователя" required>
+                                {% if form.username.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
+                                {% endif %}
+                            </div>
+                            <div class="input-box col-md-6">
+                                <input type="text" name="email" value="{% if form.email.value %}{{form.email.value}}{% endif %}" style="width:350px" placeholder="Ваш E-mail" required>
+                                {% if form.email.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
+                                {% endif %}
+                            </div>
+                            <div class="input-box col-md-6">
+                                <input type="password" name="password1" style="width:350px" placeholder="Придумайте пароль" required>
+                                {% if form.password1.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.password1.errors}}</div>
+                                {% endif %}
+                            </div>
+                            <div class="input-box col-md-6">
+                                <input type="password" name="password2" style="width:350px" placeholder="Проверьте пароль" required>
+                                {% if form.password2.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.password2.errors}}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="login-button">
+                            <a href="{% url "users:registration" %}"><button type="submit" class="btn">Создать аккаунт</button></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-12">
+                            
+            </div>
+        </div>
     </div>
 {% endblock %}

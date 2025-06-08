@@ -1,55 +1,70 @@
 {% extends "base.html" %}
 {% load static %}
 
-
+{% block modal %}
+    {% include "includes/modal_button.html" %}
+{% endblock  %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static "3. profile\source\styles\profile.css" %}">
-    <link rel="stylesheet" href="{% static "source\styles\bg-images\profile-bg-image\profile-bg-image.css" %}">
-    <link href="{% static "3. profile/source/files/webicons/free/fonts/basic/boxicons.css" %}" rel='stylesheet'>
+    <link rel="stylesheet" href="{% static "base\source\styles\4user_css\0profile.css" %}">
+    <link rel="stylesheet" href="{% static "base\source\styles\4user_css\1login.css" %}">
 {% endblock %}
 
 
 
 {% block content %}
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-lg-3">
 
-    <div class="form wrapper login-wrapper" style="margin-left:240px; width: 800px;">
-        <form action="{% url "users:login" %}" method="post">
-            {% csrf_token %}
-            <h1>Вход</h1>
-            {% if form.non_field_errors %}    
-                <div style="width: 100%;">
-                    <div class="alert alert-danger alert-dismissible fade show custom-shadow" role="alert">
-                        {{form.non_field_errors}}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+            </div>
+
+            <div class="col-lg-8 col-md-12">
+                <div class="login-wrapper">
+                    <form action="{% url "users:login" %}" method="post">
+                        {% csrf_token %}
+                        <h1>Вход</h1>
+                        {% if form.non_field_errors %}    
+                            <div style="width: 100%;">
+                                <div class="alert alert-danger alert-dismissible fade show custom-shadow" role="alert">
+                                    {{form.non_field_errors}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="input-box">
+                            <input type="text" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" placeholder="Имя пользователя" class="form-input" autofocus: "True" required>
+                            <i class='bx-user-circle'></i>
+                        </div>
+                        <div class="input-box">
+                            <div style="display:inline; position:relative;">
+                                <input type="password" name="password" id="password" class="form-input" placeholder="Пароль" autocomplete : "current-password" required>
+                                <input type="button" onclick="showPassword()" style="position:absolute; right: 10px; bottom:15px; z-index:1000; opacity:0;"></input>
+                                <img id="eyeicon" width="20px" style="position:absolute; right: 10px; bottom:5px; z-index:0;" src="{% static "base\source\files\base_files\password-eye\eye-open.png" %}" alt="">
+                            </div>
+                            <i class='bx-lock-keyhole'></i>
+                        </div>
+                        <div class="remember">
+                            <label for=""><input type="checkbox">Запомни меня</label>
+                            <a href="{% url "users:forget-password" %}">Забыли пароль?</a>
+                        </div>
+
+                        <div class="login-button">
+                            <button type="submit" class="btn">Войти</button>
+                        </div>
+
+                        <div class="register-link">
+                            <p>Еще не зарегистрировались? <a href="{% url "users:registration" %}">Создайте аккаунт</a></p>
+                        </div>
+                    </form>
                 </div>
-            {% endif %}
-            <div class="input-box">
-                <input type="text" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" placeholder="Имя пользователя" class="form-input" style="width:300px" autofocus: "True" required>
-                <i class='bx-user-circle'></i>
-            </div>
-            <div class="input-box">
-                <div style="display:inline; position:relative;">
-                    <input type="password" name="password" id="password" class="form-input" style="width:300px" placeholder="Пароль" autocomplete : "current-password" required>
-                    <input type="button" onclick="showPassword()" style="position:absolute; right: 10px; bottom:15px; z-index:1000; opacity:0;"></input>
-                    <img id="eyeicon" width=20px style="position:absolute; right: 10px; bottom:5px; z-index:0;" src="{% static "3. profile\source\icons\eye-open.png" %}" alt="">
-                </div>
-                <i class='bx-lock-keyhole'></i>
-            </div>
-            <div class="remember">
-                <label for=""><input type="checkbox">Запомни меня</label>
-                <a href="{% url "users:forget-password" %}">Забыли пароль?</a>
             </div>
 
-            <div style="text-align:center;">
-                <button type="submit" class="btn">Войти</button>
-            </div>
 
-            <div class="register-link">
-                <p>Еще не зарегистрировались? <a href="{% url "users:registration" %}">Создайте аккаунт</a></p>
+            <div class="col-lg-2 col-md-12">
+                            
             </div>
-        </form>
+        </div>
     </div>
 {% endblock %}
         

@@ -2,64 +2,19 @@
 {% load static %}
 {% load goods_tags %}
 
+{% block modal %}
+    {% include "includes/modal_button.html" %}
+{% endblock  %}
+
 {% block css %}
-    <link rel="stylesheet" href="{% static "source\styles\bg-images\index-bg-image\index-bg-image.css" %}">
-    <link rel="stylesheet" href="{% static "0. index\source\styles\index.css" %}">
+    <link rel="stylesheet" href="{% static "base\source\styles\1main_css\1index.css" %}">
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row mt-1 position-fixed z-3">
-            <div class="dropdown mb-2">
-                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Каталог
-                    <img class="mx-1" src="{% static "source\cart\icons\grid-fill.svg" %}" alt="Catalog Icon" width="16"
-                        height="16">
-                </button>
-                <ul class="dropdown-menu">
-                    {% tag_categories as categories %}
-                    {% for category in categories %}
-                        <li> <a class="dropdown-item" href="{% url "goods:catalog" category.slug%}" aria-current="true"> {{category.name}} </a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div>
-                <button type="button" class="btn btn-dark btn-secondary d-flex" id="modalButton"
-                    aria-expanded="false">
-                    <img class="mx-1" src="{% static "source\cart\icons\basket.svg" %}" alt="Catalog Icon" width="24"
-                        height="24">
-                    <span id="goods-in-cart-count">0</span>
-                </button>
-            </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <h3 class="text-center mb-4">Корзина</h3>
-                            <div class="container" id="cart-items-container">
-                                {% include "carts/includes/included_cart.html" %}
-                            </div>
-                            <div style="text-align:center">
-                                <a class="btn btn-dark" href="orders/create_order.html">
-                                    Оформить заказ
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="bgvideo-container">
         <div class="bgvideo">
             <a href="#carousel">
-                <video src="{% static "0. index\source\videos\Japan.mp4" %}" type="video/mp4" autoplay muted loop></video>
+                <video src="{% static "base\source\videos\Japan.mp4" %}" type="video/mp4" autoplay muted loop></video>
             </a>
             <a href="#carousel">
                 <div class="video-text">
@@ -68,6 +23,7 @@
             </a>
         </div>
     </div>
+
 
     <div class="container-fluid mt-4">
         <div class="row">
@@ -108,16 +64,16 @@
                             <button type="button" data-bs-target="#carouselExampleIndicators"
                                 data-bs-slide-to="7" aria-label="Slide 8"></button>
                         </div>
-                        <div class="carousel-inner" style="height:600px" id="carousel">
+                        <div class="carousel-inner" id="carousel">
                             <div class="carousel-item active">
                                 <div class="d-block w-100">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <img src="{% static "1. catalog\source\images\Категории\sladosti.jpg" %}" class="w-100"
+                                            <img src="{% static "base\source\images\category_images\sladosti.jpg" %}" class="w-100"
                                                 alt="Сладости">
                                         </div>
                                         <div class="col-lg-6 col-md-6 slide-text">
-                                            <p> Сладенькое </p>
+                                            <p class="carousel-title"> Сладенькое </p>
                                             <a href="{% url "goods:catalog" category_slug='sladenkoe' %}" class="btn"> Перейти в каталог</a>
                                         </div>
                                     </div>
@@ -127,11 +83,11 @@
                                 <div class="d-block w-100">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <img src="{% static "1. catalog\source\images\Категории\ice-cream.jpg" %}" class="w-100"
+                                            <img src="{% static "base\source\images\category_images\ice-cream.jpg" %}" class="w-100"
                                                 alt="Мороженое">
                                         </div>
                                         <div class="col-lg-6 col-md-6 slide-text">
-                                            <p> Мороженко </p>
+                                            <p class="carousel-title"> Мороженко </p>
                                             <a href="{% url "goods:catalog" category_slug='morozhenko' %}" class="btn"> Перейти в каталог</a>
                                         </div>
                                     </div>
@@ -141,11 +97,11 @@
                                 <div class="d-block w-100">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <img src="{% static "1. catalog\source\images\Категории\drinks.jpg" %}" class="w-100"
+                                            <img src="{% static "base\source\images\category_images\drinks.jpg" %}" class="w-100"
                                                 alt="Напитки">
                                         </div>
                                         <div class="col-lg-6 col-md-6 slide-text">
-                                            <p> Напитки </p>
+                                            <p class="carousel-title"> Напитки </p>
                                             <a href="{% url "goods:catalog" category_slug='napitki' %}" class="btn"> Перейти в каталог</a>
                                         </div>
                                     </div>
@@ -155,11 +111,11 @@
                                 <div class="d-block w-100">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <img src="{% static "1. catalog\source\images\Категории\energetics.jpg" %}" class="w-100"
+                                            <img src="{% static "base\source\images\category_images\energetics.jpg" %}" class="w-100"
                                                 alt="Энергетики">
                                         </div>
                                         <div class="col-lg-6 col-md-6 slide-text">
-                                            <p> Энергетики </p>
+                                            <p class="carousel-title"> Энергетики </p>
                                             <a href="{% url "goods:catalog" category_slug='energetiki' %}" class="btn"> Перейти в каталог</a>
                                         </div>
                                     </div>
@@ -169,11 +125,11 @@
                                 <div class="d-block w-100">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <img src="{% static "1. catalog\source\images\Категории\chipsy.jpg" %}" class="w-100"
+                                            <img src="{% static "base\source\images\category_images\chipsy.jpg" %}" class="w-100"
                                                 alt="Чипсы">
                                         </div>
                                         <div class="col-lg-6 col-md-6 slide-text">
-                                            <p> Чипсики </p>
+                                            <p class="carousel-title"> Чипсики </p>
                                             <a href="{% url "goods:catalog" category_slug='chipsiki' %}" class="btn"> Перейти в каталог </a>
                                         </div>
                                     </div>
@@ -183,11 +139,11 @@
                                 <div class="d-block w-100">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <img src="{% static "1. catalog\source\images\Категории\noodles.jpg" %}" class="w-100"
+                                            <img src="{% static "base\source\images\category_images\noodles.jpg" %}" class="w-100"
                                                 alt="Лапша">
                                         </div>
                                         <div class="col-lg-6 col-md-6 slide-text">
-                                            <p> Лапша </p>
+                                            <p class="carousel-title"> Лапша </p>
                                             <a href="{% url "goods:catalog" category_slug='lapsha' %}" class="btn"> Перейти в каталог</a>
                                         </div>
                                     </div>
@@ -197,11 +153,11 @@
                                 <div class="d-block w-100">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <img src="{% static "1. catalog\source\images\Категории\tokpokki.jpg" %}" class="w-100"
+                                            <img src="{% static "base\source\images\category_images\tokpokki.jpg" %}" class="w-100"
                                                 alt="Токпокки">
                                         </div>
                                         <div class="col-lg-6 col-md-6 slide-text">
-                                            <p> Токпокки </p>
+                                            <p class="carousel-title"> Токпокки </p>
                                             <a href="{% url "goods:catalog" category_slug='tokpokki' %}" class="btn"> Перейти в каталог </a>
                                         </div>
                                     </div>
@@ -211,11 +167,11 @@
                                 <div class="d-block w-100">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <img src="{% static "1. catalog\source\images\Категории\soyevye-zakuski.jpg" %}" class="w-100"
+                                            <img src="{% static "base\source\images\category_images\soyevye-zakuski.jpg" %}" class="w-100"
                                                 alt="Соевые закуски">
                                         </div>
                                         <div class="col-lg-6 col-md-6 slide-text">
-                                            <p> Соевые закуски </p>
+                                            <p class="carousel-title"> Соевые закуски </p>
                                             <a href="{% url "goods:catalog" category_slug='soevye-zakuski' %}" class="btn"> Перейти в каталог</a>
                                         </div>
                                     </div>
@@ -236,17 +192,16 @@
                     </div>
 
                     <div class="col-lg-12 col-md-12 text-center mt-4">
-                        <p>Есть вопросы? Напишите нам в директ!</p>
+                        <p class="bottom-text">Есть вопросы? Напишите нам в директ!</p>
                     </div>
                     <div class="col-lg-12 col-md-12 text-center">
                         <p><a href="https://www.instagram.com/direct/t/102299521419536" target="_blank"><img
-                                    class="call-anim" style="width: 40px" src="{% static "source\files\direct.jpg" %}"
+                                    class="call-anim" style="width: 40px" src="{% static "base\source\files\1main_files\direct.jpg" %}"
                                     alt="Наш директ"></a></p>
                     </div>
 
                 </div>
             </div>
-
             <div class="col-lg-2 col-md-12">
                 <div class="row px-2">
                     <div class="col-lg-12 sidebar my-4">
@@ -261,7 +216,7 @@
                     <div class="col-lg-12 sidebar my-4">
 
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     </div>

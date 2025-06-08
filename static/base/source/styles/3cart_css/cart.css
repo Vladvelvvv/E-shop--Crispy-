@@ -1,0 +1,134 @@
+.catalog{
+    background: #ffffff url(Catalog.jpg) center top/cover no-repeat;
+}
+
+.cart-content{
+    width: 750px;
+    color:aquamarine;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 100px;
+    padding:30px 40px;
+    border:2px solid rgb(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart-li{
+    background-color: rgba(128, 128, 128, 0.503);
+    color:aquamarine;
+    text-align:center;
+    border-radius: 100px;
+    padding:30px 40px;
+    border:2px solid rgb(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart-footer{
+    background-color: rgba(128, 128, 128, 0.503);
+    border-radius: 20px;
+}
+
+.card-text{
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.card-title{
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.list-group{
+    border-radius: 10px;
+}
+
+.mini-cart-form{
+    background-color: blanchedalmond;
+    text-align: center;
+    font-weight: 600;
+    border-color: black;
+}
+
+.mini-cart-increment,
+.mini-cart-decrement{
+    background-color:black;
+    color:rgb(127, 255, 212);
+    height: 40px;
+}
+
+.mini-cart-form-text{
+    font-size: 25px;
+}
+
+.mini-cart-decrement{
+    border-radius: 180px 40px 40px 180px;
+}
+
+.mini-cart-increment{
+    border-radius: 40px 180px 180px 40px;
+}
+
+.create-order{
+    text-align:center;
+}
+
+.create-order a{
+    color:aquamarine;
+}
+
+.mini-cart-button,
+.mini-catalog-button{
+    background-color:gray;
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    width: 200px;
+    height:85px;  
+    justify-items: center;
+    align-items: center;
+    color: aquamarine;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.8);
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.mini-catalog-button{
+    border-radius: 20% 20% 20% 20%;
+}
+
+.mini-cart-button{
+    width: 150px;
+    border-radius: 20% 20% 20% 20%;
+}
+
+.mini-catalog-dropdown{
+    width: 200px;
+    border-radius: 0% 0% 10% 10%;
+    background-color: gray;
+}
+
+.mini-catalog-dropdown-item{
+    color:aquamarine;
+    text-align: center;
+    font-weight: 600;
+}
+
+.create-order-button{
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    width: 250px;
+    height:85px;
+    justify-items: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: aquamarine;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.8);
+    font-size: 1.4rem;
+    font-weight: 800;
+    border-radius: 20%;
+}
+
+.cart-footer,
+.card-title{
+    text-align: center;
+}
