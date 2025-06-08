@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 
 from carts.models import Cart
@@ -29,18 +30,10 @@ def cart_add(request, product_slug):
 
     return redirect(request.META['HTTP_REFERER'])
 
-def cart_remove(request, product_slug):
+def cart_remove(request, cart_id):
          
-    product = Products.objects.filter(slug=product_slug)
-
-    if request.user.is_authenticated:
-        carts = Cart.objects.filter(user=request.user, product=product)
-
-    if carts.exists():
-        cart = carts.first()
-        if cart:
-            cart.quantity -= 1
-            cart.save()
+    cart = Cart.objects.get(id=cart_id)
+    cart.delete()
     
     return redirect(request.META['HTTP_REFERER'])
  

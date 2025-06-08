@@ -20,8 +20,6 @@
                     <div class="col-md-7">
                         <div class="cart-content">
                             <div class="modal-header">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <h3 class="card-text text-center mb-4">Корзина</h3>
@@ -58,7 +56,8 @@
                                                             <strong>{{ cart.products_price }} $</strong>
                                                         </div>
                                                         <div class="mini-cart-form-text col p-0" style="margin-right:10px">
-                                                            <a href="{% url "carts:cart_remove" 1 %}" class="remove-from-cart" data-cart-id="">
+                                                            {% csrf_token %}
+                                                            <a href="{% url "carts:cart_remove" cart.id %}" class="remove-from-cart" data-cart-id="">
                                                                 <img class="mx-1" src="{% static "base\source\files\base_files\mini-cart_files\trash.svg" %}"
                                                                     alt="Catalog Icon" width="16" height="16">
                                                             </a>
@@ -80,9 +79,11 @@
                                     </div>
                                 </div>
                                 <div class="create-order">
-                                    <a class="create-order-button btn btn-dark" href="{% url "orders:order" %}">
-                                        Оформить заказ
-                                    </a>
+                                    {% if carts %}
+                                        <a class="create-order-button btn btn-dark" href="{% url "orders:order" %}">
+                                            Оформить заказ
+                                        </a>
+                                    {% endif %}
                                     <a class="create-order-button btn btn-dark" href="{% url "goods:catalog" category_slug="all" %}">
                                         Назад в Каталог
                                     </a>
