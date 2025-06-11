@@ -6,8 +6,7 @@ class User(AbstractUser):
     
     image = models.ImageField(upload_to='users_images', blank=True, null=True, verbose_name='Аватар')
     birth_day = models.DateField(blank=True, null=True, verbose_name='Дата рождения')
-    current_password = models.CharField(blank=True, null=True, verbose_name='Текущий пароль')
-    new_password = models.CharField(blank=True, null=True, verbose_name='Новый пароль')
+    phone_number = models.CharField(max_length=10, blank=True, null=True)
     
     class Meta:
         db_table = 'user'
