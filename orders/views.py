@@ -1,4 +1,5 @@
 from importlib.metadata import requires
+from django.contrib.auth.decorators import login_required
 from itertools import product
 from xml.dom import ValidationErr
 from django.db import transaction
@@ -10,6 +11,7 @@ from orders.models import Order, OrderItem
 from carts.models import Cart
 from orders.forms import CreateOrderForm
 
+@login_required
 def order(request):
     
     if request.method == 'POST':
@@ -68,6 +70,7 @@ def order(request):
         'title': 'Заказ',
         'class': 'order',
         'form': form,
+        'order': True,
     }
     
     return render(request, "orders/order.html", context)

@@ -53,11 +53,11 @@
             </h4>
         </div>
     </div>
-    <div class="create-order">
-        {% if carts %}
+    {% if carts and not order %}
+        <div class="create-order">
             <a class="create-order-button btn btn-dark" href="{% url "orders:order" %}">
                 Оформить заказ
             </a>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 </div>
