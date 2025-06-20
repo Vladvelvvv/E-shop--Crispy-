@@ -5,10 +5,10 @@ from users import views
 app_name = "users"
 
 urlpatterns = [
-    path('profile', views.profile, name="profile"),
-    path('login/', views.login, name="login"),
+    path('profile', views.ProfileView.as_view(), name="profile"),
+    path('login/', views.UserLoginView.as_view(), name="login"),
     path('logout/', views.logout, name="logout"),
-    path('registration/', views.registration, name="registration"),
-    path('forget-password/', views.forget_password, name="forget-password"),
-    path('new-password/', views.new_password, name="new-password"),
+    path('registration/', views.RegistrationView.as_view(), name="registration"),
+    path('forget-password/', views.ForgetPasswordView.as_view(), name="forget-password"),
+    path('new-password/', views.NewPasswordView.as_view(), name="new-password"),
 ]
