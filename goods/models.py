@@ -1,6 +1,4 @@
-from unicodedata import category
 from django.db import models
-from django.forms import CharField, SlugField
 from django.urls import reverse
 
 class Categories(models.Model):

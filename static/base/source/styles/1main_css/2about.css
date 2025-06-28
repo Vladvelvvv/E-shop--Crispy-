@@ -139,5 +139,6 @@
 
 .container .slide-container .slide .content .map-button:hover{
     background-color: aquamarine;
-    color:gray;
+    font-size: 30px;
+    color:black;
 }

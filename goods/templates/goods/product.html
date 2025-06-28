@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block modal %}
-    {% include "includes/modal_button.html" %}
-{% endblock  %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static "base\source\styles\2catalog_css\1catalog.css" %}">
@@ -38,7 +35,7 @@
                                 <p>В наличии: {{product.quantity}}</p>
                                 <a href="{% url "carts:cart_add" %}" class="btn add-button add-to-cart" data-product-id="{{product.id}}">Добавить в корзину</a>
                                 {% csrf_token %}
-                                <a href="{% url "goods:catalog" category_slug='all' %}" class="btn btn-primary">Назад в каталог</a>
+                                <a href="{% url "goods:catalog" category_slug='all' %}" class="btn">Назад в каталог</a>
                             </div>
                         </div>
 
@@ -46,7 +43,7 @@
                             <p>Есть вопросы? Напишите нам в директ!</p>
                         </div>
                         <div class="col-lg-12 col-md-12 text-center">
-                            <p><a href="https://www.instagram.com/direct/t/102299521419536" target="_blank"><img
+                            <p><a href="https://www.instagram.com/direct/t/102299521419536" class="direct-href" target="_blank"><img
                                         class="call-anim" style="width: 40px" src="{% static "base\source\files\1main_files\direct.jpg" %}"
                                         alt="Наш директ"></a></p>
                         </div>

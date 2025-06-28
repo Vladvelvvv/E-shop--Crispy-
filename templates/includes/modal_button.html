@@ -8,16 +8,19 @@
     <div class="container">
         <div class="row mt-1 position-fixed z-3">
             <div class="dropdown mb-2">
+                {% tag_categories as categories %}
                 <button class="mini-catalog-button btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    Каталог
+                    {% if catalog and not product %}{{category.name}}
+                    {% elif search %} Все товары
+                    {% elif catalog and product %} Товар
+                    {% else %}Каталог{% endif %}
                     <img class="mx-1" src="{% static "base\source\files\base_files\mini-cart_files\grid-fill.svg" %}" alt="Catalog Icon" width="16"
                         height="16">
                 </button>
                 <ul class="mini-catalog-dropdown dropdown-menu">
-                    {% tag_categories as categories %}
                     {% for category in categories %}
-                        <a href="{% url "goods:catalog" category.slug%}"><li class="mini-catalog-dropdown-item dropdown-item" aria-current="true">{{category.name}}</li></a>
+                        <a href="{% url "goods:catalog" category.slug%}"><li class="mini-catalog-dropdown-item dropdown-item {% if slug_url == category.slug %}dropdown-active{% endif %}" aria-current="true">{{category.name}}</li></a>
                     {% endfor %}
                 </ul>
             </div>

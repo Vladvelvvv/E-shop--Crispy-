@@ -43,8 +43,12 @@
     z-index: 1;
     opacity: 0.5;
     border-radius: 500px;
-    border: 10px ridge rgb(255, 255, 255);
-    box-shadow: 4px 4px 8px rgba(255, 255, 255, 0.8);
+    border: 10px ridge silver;
+    box-shadow: 4px 4px 8px rgb(192, 192, 192, 0.8);
+}
+
+.bgvideo video:hover{
+    border: 10px ridge gold;
 }
 
 .video-text{
@@ -63,6 +67,12 @@
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 20%;
     margin-bottom: 100px;
+}
+
+.hello-text h2:hover{
+    color: black;
+    font-size: 55px;
+    background-color: rgba(127, 255, 212, 0.5);
 }
 
 .hello-link{

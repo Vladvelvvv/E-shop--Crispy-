@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <div class="modal-content">
     {% for cart in carts %}
         <div class="card-wrapper mb-3">
@@ -11,32 +12,38 @@
                     <div class="row text-center">
                         <div class="col p-0">
                             <div class="input-group">
-                                <span class="input-group-btn">
-                                    <button type="button" class="mini-cart-decrement decrement"
-                                        data-cart-id="{{cart.id}}"
-                                        data-cart-change-url="{% url "carts:cart_change" %}">{% csrf_token %}-</button>
-                                </span>
+                                {% if not order %}
+                                    <span class="input-group-btn">
+                                        <button type="button" class="mini-cart-decrement decrement"
+                                            data-cart-id="{{cart.id}}"
+                                            data-cart-change-url="{% url "carts:cart_change" %}">{% csrf_token %}-</button>
+                                    </span>
+                                {% endif %}
                                 <input type="text"
                                     class="mini-cart-form form-control number" value="{{cart.quantity}}" readonly>
-                                <span class="input-group-btn">
-                                    <button type="button" class="mini-cart-increment increment"
-                                        data-cart-id="{{cart.id}}"
-                                        data-cart-change-url="{% url "carts:cart_change" %}">{% csrf_token %}+</button>
-                                </span>
+                                {% if not order %}
+                                    <span class="input-group-btn">
+                                        <button type="button" class="mini-cart-increment increment"
+                                            data-cart-id="{{cart.id}}"
+                                            data-cart-change-url="{% url "carts:cart_change" %}">{% csrf_token %}+</button>
+                                    </span>
+                                {% endif %}
                             </div>
                         </div>
-                        <div class="mini-cart-form-text col p-0">
-                            <p>x {{ cart.product.sell_price }} =</p>
+                        <div class="mini-cart-form-text col p-0" >
+                            <p>x {{ cart.product.sell_price }} = </p>
                         </div>
                         <div class="mini-cart-form-text col p-0">
                             <strong>{{ cart.products_price }} $</strong>
                         </div>
                         <div class="mini-cart-form-text col p-0" style="margin-right:10px">
+                            {% if not order %}
                             <a href="{% url "carts:cart_remove" %}" request="get" class="remove-from-cart" data-cart-id="{{cart.id}}">
                                 {% csrf_token %}
                                 <img class="mx-1" src="{% static "base\source\files\base_files\mini-cart_files\trash.svg" %}"
                                     alt="Catalog Icon" width="16" height="16">
                             </a>
+                            {% endif %}
                         </div>
                     </div>
                 </li>
@@ -55,7 +62,7 @@
     </div>
     {% if carts and not order %}
         <div class="create-order">
-            <a class="create-order-button btn btn-dark" href="{% url "orders:order" %}">
+            <a class="btn btn-dark profile-button" href="{% url "orders:order" %}">
                 Оформить заказ
             </a>
         </div>

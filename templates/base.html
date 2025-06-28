@@ -40,7 +40,7 @@
                             <a class="nav-link {% if index %}nav-link-active{% endif %}" aria-current="page" href="{% url "main:index" %}"> Главная страница</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if catalog %}nav-link-active{% endif %}" href="{% url "goods:catalog" category_slug='all' %}">Каталог</a>
+                            <a class="nav-link {% if catalog or search %}nav-link-active{% endif %}" href="{% url "goods:catalog" category_slug='all' %}">Каталог</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if cart %}nav-link-active{% endif %}" href="{% url "carts:cart" %}">Корзина</a>
@@ -61,8 +61,8 @@
                             <a class="nav-link {% if about %}nav-link-active{% endif %}" href="{% url "main:about" %}">О нас</a>
                         </li>
                         <form class="d-flex search-form" role="search" action="{% url "goods:search" %}" method="get">
-                            <input class="form-control me-2 search-input" type="search" name="q" placeholder="Поиск по каталогу" aria-label="Search">
-                            <button class="btn search-button" type="submit"><a href="{% url "goods:search" %}">Найти</a></button>
+                            <input class="form-control me-2 search-input" type="search" name="q" placeholder="Поиск по всем товарам" aria-label="Search">
+                            <button class="btn search-button" type="submit"><a>Найти</a></button>
                         </form>
                     </ul>
                 </div>
@@ -74,7 +74,9 @@
 
     <section class="section" id="content">
 
-        {% block modal %}{% endblock  %}
+        {% if not profile and not cart and not order %}
+            {% include "includes/modal_button.html" %}
+        {% endif %}
         
         {% include "includes/notifications.html" %}
         
@@ -85,7 +87,7 @@
 
 
 
-    <footer class="footer" if="bottom">
+    <footer class="footer" id="bottom">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4 col-md-12 footer-text text-center">
@@ -112,8 +114,8 @@
     
     <script src="{% static "base\source\js\base_js\bootstrap-5.2.3-dist\js\bootstrap.bundle.min.js" %}"></script>
     <script src="{% static "base\source\js\base_js\jquery\jquery-3.7.0.min.js" %}"></script>
-    <script src="{% static "base\source\js\base_js\jquery-ajax.js" %}"></script>
     <script src="{% static "base\source\js\base_js\file-loader.js" %}"></script>
+    <script src="{% static "base\source\js\base_js\jquery-ajax.js" %}"></script>
     <script src="{% static "base\source\js\base_js\slider.js" %}"></script>
     <script src="{% static "base\source\js\base_js\show-pass.js" %}"></script>
     <script>

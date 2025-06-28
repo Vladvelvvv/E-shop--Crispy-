@@ -2,11 +2,6 @@
     background: #ffffff url(CrispyShop.webp) center top/cover no-repeat;
 }
 
-.profile-info{
-    background: #ffffff url(CrispyShop.webp) center top/cover no-repeat;
-    text-align: center;
-}
-
 .profile-header{
     font-weight: 1000;
     font-size: 40px;
@@ -38,6 +33,12 @@
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+.login-wrapper a:hover{
+    color:silver;
+    font-size: 30px;
+}
+
 
 .wrapper h1{
     font-size: 50px;
@@ -119,6 +120,11 @@ input[type="file"] {
   background-color: blanchedalmond;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.custom-file-upload:hover{
+   background-color: gold;
+   font-size: 20px;
 }
 
 .profile-image{
@@ -225,4 +231,22 @@ input[type="file"] {
   top: 80%;
   border-radius: 15px;
   font-size: 0.7rem;
+}
+
+.admin-href{
+    font-size: 30px;
+    text-align:center;
+    text-decoration:none;
+    color:gold;
+}
+
+.admin-href:hover{
+    color:silver;
+    font-size: 35px;
+}
+
+.profile-label{
+    width:25px;
+    margin-right: 40px;
+    font-size: 20px;
 }

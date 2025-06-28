@@ -1,16 +1,17 @@
 from django.contrib import auth, messages
-from django.contrib.auth.decorators import login_required
 from django.db.models import Prefetch
 from django.http import  HttpResponseRedirect
-from django.shortcuts import redirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
-from django.views.generic import CreateView, TemplateView, UpdateView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import PasswordChangeView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.views.generic import CreateView, UpdateView
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import logout as auth_logout
 
 from carts.models import Cart
 from orders.models import Order, OrderItem
-from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
+from users.forms import ProfileForm, UserLoginForm, UserPasswordChangeForm, UserRegistrationForm
 
 class ProfileView(LoginRequiredMixin, UpdateView):
     template_name = "users/profile.html"
@@ -68,12 +69,15 @@ class UserLoginView(LoginView):
         context['login'] = True
         return context
 
-@login_required
-def logout(request):
-    
-    messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
-    auth.logout(request)
-    return redirect(reverse('main:index'))
+class UserLogoutView(LogoutView):
+    def post(self, request, *args, **kwargs):
+        messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
+        auth_logout(request)
+        redirect_to = self.get_success_url()
+        if redirect_to != request.get_full_path():
+            # Redirect to target page once the session has been cleared.
+            return HttpResponseRedirect(redirect_to)
+        return super().get(request, *args, **kwargs)
 
 class RegistrationView(CreateView):
     template_name = "users/registration.html"
@@ -101,22 +105,67 @@ class RegistrationView(CreateView):
         context["registration"] = True
         return context
     
-class ForgetPasswordView(TemplateView):
-    template_name = "users/forget-password.html"
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Восстановление пароля"
-        context["class"] = "profile"
-        context["login"] = True
-        return context
-
-class NewPasswordView(TemplateView):
+class NewPasswordView(PasswordChangeView):
     template_name = "users/new-password.html"
+    form_class = UserPasswordChangeForm
+    success_url = reverse_lazy('users:profile')
+    
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, "Пароль успешно изменен")
+        update_session_auth_hash(self.request, form.user)
+        return super().form_valid(form)
+
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Изменение пароля"
         context["class"] = "profile"
+        context["profile"] = True
         return context
+
+class UserPasswordResetView(PasswordResetView):
+    template_name = 'users/password_reset_form.html'
+    email_template_name = 'users/password_reset_email.html'
+    success_url = reverse_lazy('users:password_reset_done')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Восстановление пароля"
+        context['class'] = "profile"
+        context['login'] = True
+        return context
+
+class UserPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'users/password_reset_done.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Пароль сброшен"
+        context['class'] = "profile"
+        context['login'] = True
+        return context
+    
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'users/password_reset_confirm.html'
+    success_url = reverse_lazy('users:password_reset_complete')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Изменение пароля"
+        context['class'] = "profile"
+        context['login'] = True
+        return context
+    
+class UserPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'users/password_reset_complete.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Пароль изменен"
+        context['class'] = "profile"
+        context['login'] = True
+        return context
+        
+    
 

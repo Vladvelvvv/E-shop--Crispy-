@@ -31,6 +31,25 @@ p{
     color:aquamarine;
 }
 
+.profile-button:hover{
+    color:gold;
+    background-color: aquamarine;
+    border-radius: 30px;
+    font-size: 30px;
+}
+
+.base-alert{
+    position:fixed;
+    margin-bottom: 50px;
+    width: 500px;
+    z-index:1001;
+}
+
+.profile-alert{
+    margin-top: 10px;
+    height: 60px;
+    width: 350px;
+}
 
 .search-form{
     margin-left:200px;
@@ -67,12 +86,27 @@ p{
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.8);
     font-size: 1.4rem;
     font-weight: 800;
-    animation: animate .4s linear .4s backwards;
     border-radius: 20%;
+}
+
+.btn:hover{
+    color:black;
+    background-color: aquamarine;
+    font-size:20px
 }
 
 .call-anim{
     animation: call 2s ease 0s infinite normal forwards;
+}
+
+.slide-change{
+    text-decoration: none;
+    color:aquamarine;
+}
+
+.slide-change:hover{
+    font-size: 50px;
+    color:blanchedalmond;
 }
 
 

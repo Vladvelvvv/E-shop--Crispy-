@@ -20,8 +20,13 @@
                     <div class="container mt-5">
                         <div class="row wrapper-profile">
                             <div class="col-md-5">
-                                <div class="profile p-4 mb-4 mx-2 rounded custom-shadow" style="text-align:center">
-                                    <h3 class="profile-header text-center mb-4">Профиль</h3>
+                                <div class="profile-info p-4 mb-4 mx-2 rounded custom-shadow" style="text-align:center">
+                                    <h3 class="profile-header mb-4">Профиль</h3>
+                                    {% if user.is_admin or user.is_staff %}
+                                        <div style="text-align:center;">
+                                            <a href="{% url "admin:index" %}" class="admin-href">Админ-панель</a>
+                                        </div>
+                                    {% endif %}
                                     <form action="{% url "users:profile" %}" method="post" enctype="multipart/form-data">
                                         {% csrf_token %}
 
@@ -40,41 +45,47 @@
                                             </label>
                                             <input type="file" name="image" id="file-upload">
                                             {% if form.image.errors %}
-                                                <div class="alert alert-danger alert-dismissible fade show">{{form.image.errors}}</div>
+                                                <div class="alert alert-danger alert-dismissible profile-alert fade show">{{form.image.errors}}</div>
                                             {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" style="background-color:blanchedalmond" name="first_name" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" placeholder="Имя">
+                                            <label class="profile-label" for="first_name">Имя</label>
+                                            <input type="text" style="background-color:blanchedalmond" id="first_name" name="first_name" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" placeholder="Имя">
                                             {% if form.first_name.errors %}
-                                                <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
+                                                <div class="alert alert-danger alert-dismissible profile-alert fade show">{{form.first_name.errors}}</div>
                                             {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" style="background-color:blanchedalmond" name="last_name" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" placeholder="Фамилия">
+                                            <label class="profile-label" for="last_name">Фамилия</label>
+                                            <input type="text" style="background-color:blanchedalmond" id="last_name" name="last_name" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" placeholder="Фамилия">
                                             {% if form.last_name.errors %}
-                                                <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
+                                                <div class="alert alert-danger alert-dismissible profile-alert fade show">{{form.last_name.errors}}</div>
                                             {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
                                             {% if form.birth_day.value %}
-                                                <input type="text" style="background-color:blanchedalmond" name="birth_day" value="{{ form.birth_day.value }}" placeholder="Дата рождения"> 
+                                                <label class="profile-label" for="birth_day">Д/Р</label>
+                                                <input type="text" style="background-color:blanchedalmond" id="birth_day" name="birth_day" value="{{ form.birth_day.value }}" placeholder="Дата рождения"> 
                                             {% else %}
-                                                <input type="date" style="background-color:blanchedalmond" name="birth_day" value="{{ form.birth_day.value }}" placeholder="Дата рождения">
+                                                <label class="profile-label" for="birth_day">Д/Р</label>
+                                                <input type="date" style="background-color:blanchedalmond" id="birth_day" name="birth_day" value="{{ form.birth_day.value }}" placeholder="Дата рождения">
                                             {% endif %}
                                             {% if form.birth_day.errors %}
-                                                <div class="alert alert-danger alert-dismissible fade show">{{form.birth_day.errors}}</div>
+                                                <div class="alert alert-danger alert-dismissible profile-alert fade show">{{form.birth_day.errors}}</div>
                                             {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" style="background-color:blanchedalmond" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" placeholder="Имя пользователя">
+                                            <label class="profile-label" for="username">Псевдоним</label>
+                                            <input type="text" style="background-color:blanchedalmond" id="username" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" placeholder="Имя пользователя">
                                             {% if form.username.errors %}
-                                                <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
+                                                <div class="alert alert-danger alert-dismissible profile-alert fade show">{{form.username.errors}}</div>
                                             {% endif %}
                                         </div>
                                         <div class="input-box  mb-2">
-                                            <input type="text" style="background-color:blanchedalmond" name="email" value="{% if form.email.value %}{{form.email.value}}{% endif %}" placeholder="E-mail">
+                                            <label class="profile-label" for="email">Эл.почта</label>
+                                            <input type="text" style="background-color:blanchedalmond" id="email" name="email" value="{% if form.email.value %}{{form.email.value}}{% endif %}" placeholder="E-mail">
                                             {% if form.email.errors %}
-                                                <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
+                                                <div class="alert alert-danger alert-dismissible profile-alert fade show">{{form.email.errors}}</div>
                                             {% endif %}
                                         </div>
                                         {% comment %} <div class="input-box  mb-2">
@@ -91,17 +102,21 @@
                                         </div> {% endcomment %}
 
                                         <div style="text-align:center">
-                                            <button type="submit" class="btn" style="margin-bottom:20px">Внести изменения</button>
+                                            <button type="submit" class="btn profile-button" style="margin-bottom:20px">Внести изменения</button>
                                         </div>
                                     </form>
-                                    <div style="text-align:center; margin-bottom:20px">
-                                        {% if user.is_admin or user.is_staff %}
-                                            <a href="{% url "admin:index" %}" style="text-decoration:none; color:aquamarine;"><button type="submit" class="btn">Админ-панель</button></a>
-                                        {% endif %}
-                                    </div>
-                                    <div style="text-align:center">
-                                        <a href="{% url "users:logout" %}" style="text-decoration:none; color:aquamarine"><button type="submit" class="btn">Выйти из профиля</button></a>
-                                    </div>
+                                    <form action="{% url "users:password_change" %}" method="post">
+                                        <div style="text-align:center; margin-bottom:20px">
+                                            {% csrf_token %}
+                                            <a style="text-decoration:none; color:aquamarine"><button type="submit" class="btn profile-button">Изменение пароля</button></a>
+                                        </div>
+                                    </form>
+                                    <form action="{% url "users:logout" %}" method="post">
+                                        <div style="text-align:center">
+                                            {% csrf_token %}
+                                            <a style="text-decoration:none; color:aquamarine"><button type="submit" class="btn profile-button">Выйти из профиля</button></a>
+                                        </div>
+                                    </form>
                                     
                                 </div>
                             </div>
@@ -112,7 +127,7 @@
                                     <div class="container" id="cart-items-container">
                                         {% include "carts/includes/included_cart.html" %}
                                     </div>
-                                    <a href="{% url "goods:catalog" category_slug='all' %}" class="btn btn-dark" style="margin-top:20px">
+                                    <a href="{% url "goods:catalog" category_slug='all' %}" class="btn btn-dark profile-button" style="margin-top:20px">
                                         Назад в каталог
                                     </a>
                                 </div>

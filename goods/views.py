@@ -1,15 +1,50 @@
-from django.core.paginator import Paginator
 from django.views.generic import DetailView, ListView
 
-from goods.models import Products
+from goods.models import Categories, Products
 from goods.utils import q_search
 
 class CatalogView(ListView):
-    template_name = "goods/catalog.html"
     model = Products
+    template_name = "goods/catalog.html"
     paginate_by = 4
     context_object_name = "products"
+     
+    def get_queryset(self):
+        
+        category_slug = self.kwargs.get("category_slug")
+        on_sale = self.request.GET.get("on_sale")
+        order_by = self.request.GET.get("order_by")
+        
+        if category_slug == 'all':
+            products = Products.objects.all()
+        else:
+            products = Products.objects.filter(category__slug=category_slug)
+        
+        if on_sale:
+            products = products.filter(discount__gt=0)
+            
+        if order_by and order_by != 'default':
+            products = products.order_by(order_by)
+                        
+        return products 
     
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Каталог"
+        context["class"] = "catalog"
+        context["catalog"] = True 
+        context["slug_url"] = self.kwargs.get("category_slug")
+        context["category"] = Categories.objects.get(slug=self.kwargs.get("category_slug"))
+
+        return context
+    
+class SearchView(ListView):
+    model = Products
+    template_name = "goods/catalog.html"
+    paginate_by = 4
+    context_object_name = "products"
+     
     def get_queryset(self):
         
         category_slug = self.kwargs.get("category_slug")
@@ -18,28 +53,34 @@ class CatalogView(ListView):
         query = self.request.GET.get("q")
         
         if category_slug == 'all':
-            products = super().get_queryset()
-            
+            products = Products.objects.all()
         elif query:
             products = q_search(query)
         else:
-            products = super().get_queryset().filter(category__slug=category_slug)
+            products = Products.objects.filter(category__slug=category_slug)
         
         if on_sale:
             products = products.filter(discount__gt=0)
             
         if order_by and order_by != 'default':
             products = products.order_by(order_by)
-            
+                        
         return products
+        
+    
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Каталог"
         context["class"] = "catalog"
-        context["catalog"] = True
+        if self.request.GET.get("q"):
+            context["search"] = True 
+        else:
+            context["catalog"] = True
         context["slug_url"] = self.kwargs.get("category_slug")
+
         return context
+    
 
 class ProductView(DetailView):
     
@@ -53,7 +94,7 @@ class ProductView(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Товар"
+        context['title'] = self.object.name
         context['class'] = "catalog"
         context['catalog'] = True
         return context

@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block modal %}
-    {% include "includes/modal_button.html" %}
-{% endblock  %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static "base\source\styles\4user_css\0profile.css" %}">
@@ -23,6 +20,9 @@
                 <div class="login-wrapper">
                     <form action="{% url "users:login" %}" method="post">
                         {% csrf_token %}
+                        {% if request.GET.next %}
+                         <input type="hidden" name="next" value="{{request.GET.next}}">
+                        {% endif %}
                         <h1>Вход</h1>
                         {% if form.non_field_errors %}    
                             <div style="width: 100%;">
@@ -36,7 +36,7 @@
                             <input type="text" name="username" value="{% if form.username.value %}{{form.username.value}}{% endif %}" placeholder="Имя пользователя" class="form-input" autofocus: "True" required>
                             <i class='bx-user-circle'></i>
                         </div>
-                        <div class="input-box">
+                        <div class="input-box" style="margin-bottom:-50px">
                             <div style="display:inline; position:relative;">
                                 <input type="password" name="password" id="password" class="form-input" placeholder="Пароль" autocomplete : "current-password" required>
                                 <input type="button" onclick="showPassword()" style="position:absolute; width:40px; right: 3px; top:0x; z-index:1000; opacity:0;"></input>
@@ -46,15 +46,15 @@
                         </div>
                         <div class="remember">
                             <label for=""><input type="checkbox">Запомни меня</label>
-                            <a href="{% url "users:forget-password" %}">Забыли пароль?</a>
+                            <a href="{% url "users:password_reset" %}" class="forget-password" style="color:gold;">Забыли пароль?</a>
                         </div>
 
-                        <div class="login-button">
+                        <div class="login-button" style="margin-bottom:20px">
                             <button type="submit" class="btn">Войти</button>
                         </div>
 
                         <div class="register-link">
-                            <p>Еще не зарегистрировались? <a href="{% url "users:registration" %}">Создайте аккаунт</a></p>
+                            <p>Еще не зарегистрировались? <a style="color:gold" href="{% url "users:registration" %}">Создайте аккаунт</a></p>
                         </div>
                     </form>
                 </div>

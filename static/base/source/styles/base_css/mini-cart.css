@@ -52,6 +52,17 @@
     height: 40px;
 }
 
+.mini-cart-increment:hover,
+.mini-cart-decrement:hover{
+    color: gold;
+    font-size: 25px;
+}
+
+.remove-from-cart img:hover{
+    width: 30px;
+    height:30px;
+}
+
 .mini-cart-form-text{
     font-size: 25px;
 }
@@ -108,19 +119,14 @@
     font-weight: 600;
 }
 
-.create-order-button{
-    display: inline-block;
-    padding: 1.5rem 3rem;
-    width: 250px;
-    height:85px;
-    justify-items: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: aquamarine;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.8);
-    font-size: 1.4rem;
-    font-weight: 800;
-    border-radius: 20%;
+.mini-catalog-dropdown-item:hover{
+    background-color: aquamarine;
+    color:gold;
+}
+
+.dropdown-active{
+    background-color: aquamarine;
+    color:gold;
 }
 
 .cart-footer,

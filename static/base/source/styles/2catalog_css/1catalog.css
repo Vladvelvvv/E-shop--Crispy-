@@ -52,9 +52,20 @@
 }
 
 .add-button:hover{
-    background-color: aquamarine;
-    color:black;
     border-radius: 75px;
+}
+
+.filter-submit-btn{
+    color: aquamarine;
+    background-color: gray;
+    margin-left:45px;
+    border-radius: 50px;
+}
+
+.filter-submit-btn:hover{
+    color: black;
+    background-color: aquamarine;
+    font-size: 18px;
 }
 
 .product-card{
