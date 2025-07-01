@@ -9,11 +9,13 @@ from django.views.generic import CreateView, UpdateView
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import logout as auth_logout
 
+
 from carts.models import Cart
+from common.mixins.cache_mixin import CacheMixin
 from orders.models import Order, OrderItem
 from users.forms import ProfileForm, UserLoginForm, UserPasswordChangeForm, UserRegistrationForm
 
-class ProfileView(LoginRequiredMixin, UpdateView):
+class ProfileView(LoginRequiredMixin, CacheMixin, UpdateView):
     template_name = "users/profile.html"
     form_class = ProfileForm
     success_url = reverse_lazy('users:profile')
@@ -30,8 +32,9 @@ class ProfileView(LoginRequiredMixin, UpdateView):
         context["title"] = "Профиль"
         context["class"] = "profile"
         context["profile"] = True
-        context["orders"] = Order.objects.filter(user=self.request.user).prefetch_related(
+        orders_cache = Order.objects.filter(user=self.request.user).prefetch_related(
             Prefetch("orderitem_set",queryset=OrderItem.objects.select_related("product"))).order_by("-id")
+        context["orders"] = self.set_get_cache(orders_cache, f"user_{self.request.user.id}_orders", 60*5)
         return context
     
 
