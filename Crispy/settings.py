@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-g1@fonra&zly63i$p_alp774jxy#h^06ik#5)9m+55f(x5@pf5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['crispy-mtc6.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
