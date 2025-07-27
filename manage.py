@@ -20,7 +20,7 @@ def main():
 
     User = get_user_model()
     if not User.objects.filter(username="admin").exists():
-    User.objects.create_superuser("admin", "vladvelvvv@gmail.com", "adminpassword")
+        User.objects.create_superuser("admin", "vladvelvvv@gmail.com", "adminpassword")
     
 
 if __name__ == '__main__':
