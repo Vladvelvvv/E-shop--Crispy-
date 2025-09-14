@@ -11,9 +11,9 @@ If deployed on render:
 
 predeploy commands:
 python manage.py migrate && python manage.py createsuperuser --noinput || true
-
+or write these commands here:
 deploy commands:
-pip install -r requirements.txt
+pip install -r requirements.txt && python manage.py migrate && python manage.py createsuperuser --noinput || true
 
 start command:
 gunicorn Crispy.wsgi:application
