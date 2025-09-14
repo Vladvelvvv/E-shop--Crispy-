@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-default")  # Use env var on Render
 DEBUG = os.environ.get("DEBUG", "False") == "True"
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "e-shop-crispy.onrender.com").split(",")
 
 # =========================
 # Applications
