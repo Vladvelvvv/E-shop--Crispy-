@@ -6,3 +6,21 @@ Authorization is simple but I also implemented change profile info and profile p
 I tried to deploy it with Render and tested myself.
 
 You can find some more small features in this project if you try it yourself.
+
+If deployed on render:
+
+predeploy commands:
+python manage.py migrate && python manage.py createsuperuser --noinput || true
+
+deploy commands:
+pip install -r requirements.txt
+
+start command:
+gunicorn Crispy.wsgi:application
+
+Environment Variables:
+ALLOWED_HOSTS=my-app.onrender.com
+DATABASE_URL=<auto-filled if Postgres linked>
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=vladvelvvv@gmail.com
+DJANGO_SUPERUSER_PASSWORD=adminpassword
